@@ -1,0 +1,28 @@
+{
+  "name": "docwtictoc",
+  "version": "0.0.0",
+  "description": "The DoCW Tic Toc Website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UtkarshMe/DocwTicToc.git"
+  },
+  "keywords": [
+    "docw",
+    "tic-toc",
+    "website"
+  ],
+  "author": "UTkarsh Maheshwari",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/UtkarshMe/DocwTicToc/issues"
+  },
+  "homepage": "https://github.com/UtkarshMe/DocwTicToc#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
