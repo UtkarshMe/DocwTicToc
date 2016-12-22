@@ -1,11 +1,18 @@
 {
     "host": "127.0.0.1",
     "port": "1234",
-    "log": {
+
+    "log":
+    {
         "level": {
             "file": "warn",
             "console": "verbose"
         },
         "file": "./server.log"
+    },
+
+    "db":
+    {
+        "url": "mongodb://127.0.0.1" 
     }
 }
