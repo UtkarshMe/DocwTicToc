@@ -12,3 +12,13 @@ The DoCW Tic Toc Website
   - Start the server
   
         node server.js
+
+### To do
+  - [ ] User page with progress
+  - [ ] Answer the question
+  - [ ] Leaderboard
+  - [ ] Login
+  - [ ] Register
+  - [ ] Admin Panel
+  - [ ] News Bulletin
+  - [ ] FB API for activity
