@@ -5,8 +5,7 @@ var winston = require('winston');
 var expressWinston = require('express-winston');
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
+var bodyParser = require('body-parser');
 
 // Read config file
 var config = JSON.parse(fs.readFileSync('./config/config.json'));
@@ -45,7 +44,7 @@ app.use(expressWinston.logger({
 
 // Connect database
 var mongoose = require('mongoose');
-mongoose.connect(config.db.url);
+mongoose.connect("mongodb://"+config.db.host+":"+config.db.port+"/database");
 
 
 // Use passport as middleware for authentication

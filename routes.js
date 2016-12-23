@@ -1,19 +1,21 @@
 module.exports = function (app, passport) {
     
+    // Handle GET requests
+    
     app.get('/', function (req, res) {
-        res.render('index.html');
+        res.render('index.ejs');
     });
 
     app.get('/login', function (req, res) {
-        res.render('login.html');
+        res.render('login.ejs', { message: "Put a message in me" });
     });
 
     app.get('/signup', function (req, res) {
-        res.render('signup.html');
+        res.render('signup.ejs', { message: "Put a message in me"});
     });
 
-    app.get('/profile', authenticate, function (req, res) {
-        res.render('profile.html', {
+    app.get('/profile', isLoggedIn, function (req, res) {
+        res.render('profile.ejs', {
             user: req.user
         });
     });
@@ -22,9 +24,23 @@ module.exports = function (app, passport) {
         req.logout();
         res.redirect('/');
     });
+
+
+
+    // Handle POST requests
+
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect: '/profile',
+        failureRedirect: '/login?failed',
+    }));
+
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect: '/profile',
+        failureRedirect: '/signup?failed',
+    }));
 }
 
-function authenticate(req, res, next) {
+function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
