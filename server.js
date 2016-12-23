@@ -8,13 +8,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-
 // Read config file
 var config = JSON.parse(fs.readFileSync('./config/config.json'));
 
-
 // Create app
 var app = express();
+
+
+// Use ejs as the view engine
+app.set('view engine', 'ejs');
 
 
 // Using winston for logging
