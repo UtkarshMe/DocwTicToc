@@ -1,3 +1,4 @@
+
 module.exports = function (app, passport) {
     
     // Handle GET requests
@@ -38,6 +39,13 @@ module.exports = function (app, passport) {
         successRedirect: '/profile',
         failureRedirect: '/signup?failed',
     }));
+
+
+    // Use a 404 page
+    app.get('/*', function (req, res) {
+        res.status(404);
+        res.render('notfound.ejs');
+    });
 }
 
 function isLoggedIn(req, res, next) {
