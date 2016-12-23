@@ -3,6 +3,7 @@ The DoCW Tic Toc Website
 
 ### Instructions
   - Install [node](https://nodejs.org/en/download/)
+  - Install [mongodb](https://www.mongodb.com/download-center)
   - Clone the repo and install dependencies
   
         git clone https://github.com/UtkarshMe/DocwTicToc
