@@ -1,19 +1,19 @@
 module.exports = function (app, passport) {
     
     app.get('/', function (req, res) {
-        res.render('views/index.ejs');
+        res.render('index.ejs');
     });
 
     app.get('/login', function (req, res) {
-        res.render('views/login.ejs');
+        res.render('login.ejs');
     });
 
     app.get('/signup', function (req, res) {
-        res.render('views/signup.ejs');
+        res.render('signup.ejs');
     });
 
     app.get('/profile', authenticate, function (req, res) {
-        res.render('views/profile.ejs', {
+        res.render('profile.ejs', {
             user: req.user
         });
     });

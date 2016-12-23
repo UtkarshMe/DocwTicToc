@@ -56,6 +56,7 @@ require('./config/passport.js')(passport);
 // Use a routing file for route management
 require('./routes.js')(app, passport);
 
+
 // Use public directory for static files
 app.use(express.static(__dirname + '/public'));
 
