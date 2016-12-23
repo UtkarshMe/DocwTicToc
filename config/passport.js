@@ -50,32 +50,30 @@ module.exports = function(passport){
         },
 
         function(req, email, password, done){
-            User.findOne({'local.email': email }, function(err, user){
 
-                User.findOne({'local.email': email}, function(err, user){
+            User.findOne({'local.email': email}, function(err, user){
 
-                    if (err) {
-                        return done(err);
-                    }
+                if (err) {
+                    return done(err);
+                }
 
-                    if (user) {
-                        // User already registered
-                        return done(null, false);
-                    }
-                    else{
+                if (user) {
+                    // User already registered
+                    return done(null, false);
+                }
+                else{
 
-                        var newUser = new User();
-                        newUser.local.email = email;
-                        newUser.local.password = newUser.generateHash(password);
+                    var newUser = new User();
+                    newUser.local.email = email;
+                    newUser.local.password = newUser.generateHash(password);
 
-                        newUser.save(function(err){
-                            if (err) {
-                                throw err;
-                            }
-                                return done(null, newUser);
-                        });
-                    }
-                });
+                    newUser.save(function(err){
+                        if (err) {
+                            throw err;
+                        }
+                            return done(null, newUser);
+                    });
+                }
             });
         }
     ));
