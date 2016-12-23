@@ -9,12 +9,11 @@ var morgan = require('morgan');
 // Read config file
 var config = JSON.parse(fs.readFileSync('./config/config.json'));
 
-// Create app
+// Create and setup app
 var app = express();
-
-
-// Use ejs as the view engine
-app.set('view engine', 'ejs');
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'ejs'); // Use ejs as the view engine
 
 
 //Use morgan for logging
