@@ -41,11 +41,6 @@ module.exports = function (app, passport) {
     }));
 
 
-    // Use a 404 page
-    app.get('/*', function (req, res) {
-        res.status(404);
-        res.render('notfound.ejs');
-    });
 }
 
 function isLoggedIn(req, res, next) {
