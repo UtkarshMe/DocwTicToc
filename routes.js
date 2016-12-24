@@ -1,9 +1,13 @@
+var fs = require('fs');
+
 module.exports = function (app, passport) {
+
+    var appData = JSON.parse(fs.readFileSync('./config/appData.json'));
     
     // Handle GET requests
     
     app.get('/', function (req, res) {
-        res.render('index.ejs');
+        res.render('index.ejs', appData);
     });
 
     app.get('/login', function (req, res) {
