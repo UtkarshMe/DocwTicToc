@@ -16,7 +16,8 @@ module.exports = function (app, passport) {
     });
 
     app.get('/signup', function (req, res) {
-        res.render('signup.ejs', { message: "Put a message in me"});
+        appData.message = "Put a message in me";
+        res.render('signup.ejs', appData);
     });
 
     app.get('/profile', isLoggedIn, function (req, res) {
