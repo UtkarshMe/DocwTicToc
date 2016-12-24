@@ -10,12 +10,12 @@ module.exports = function (app, passport) {
         res.render('index.ejs', appData);
     });
 
-    app.get('/login', function (req, res) {
+    app.get('/login', isLoggedOut, function (req, res) {
         appData.message = "Put a message in me";
         res.render('login.ejs', appData);
     });
 
-    app.get('/signup', function (req, res) {
+    app.get('/signup', isLoggedOut, function (req, res) {
         appData.message = "Put a message in me";
         res.render('signup.ejs', appData);
     });
@@ -54,4 +54,12 @@ function isLoggedIn(req, res, next) {
     }
 
     res.redirect('/login');
+}
+
+function isLoggedOut(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return next();
+    }
+
+    res.redirect('/profile');
 }

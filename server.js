@@ -5,6 +5,7 @@ var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var morgan = require('morgan');
+var session = require('express-session');
 
 // Read config file
 var config = JSON.parse(fs.readFileSync('./config/config.json'));
@@ -14,6 +15,17 @@ var app = express();
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs'); // Use ejs as the view engine
+app.use(session(
+    {
+        secret: 'huehuehue',
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+            secure: false,
+            httpOnly: true
+        }
+    })
+);
 
 
 //Use morgan for logging
