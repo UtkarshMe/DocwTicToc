@@ -7,7 +7,13 @@ module.exports = function (app, passport) {
     // Handle GET requests
     
     app.get('/', function (req, res) {
-        res.render('index.ejs', appData);
+        if (req.isAuthenticated()) {
+            var data = appData;
+            data.user = req.user;
+            res.render('index.ejs', data);
+        }else{
+            res.render('index_loggedout.ejs', appData);
+        }
     });
 
     app.get('/login', isLoggedOut, function (req, res) {
