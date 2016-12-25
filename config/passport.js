@@ -1,9 +1,7 @@
-//
 // Configuration file for passportJS
-//
 
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../models/user.js');
+var Team = require('../models/team.js');
 
 
 module.exports = function(passport){
@@ -12,29 +10,29 @@ module.exports = function(passport){
     passport.use('local-login', new LocalStrategy(
         
         {
-            usernameField: 'email',
+            usernameField: 'username',
             passwordField: 'password',
             passReqToCallback: true
         },
 
-        function(req, email, password, done){
-            User.findOne({'local.email': email }, function(err, user){
+        function(req, username, password, done){
+            Team.findOne({'local.username': username }, function(err, team){
 
                 if (err) {
                     return done(err);
                 }
                 
-                if (!user) {
-                    // User not found
+                if (!team) {
+                    // Team not found
                     return done(null, false);
                 }
                 
-                if (!user.validPassword(password)) {
+                if (!team.validPassword(password)) {
                     // Wrong password
                     return done(null, false);
                 }
 
-                return done(null, user);
+                return done(null, team);
             });
         }
     ));
@@ -44,34 +42,34 @@ module.exports = function(passport){
     passport.use('local-signup', new LocalStrategy(
         
         {
-            usernameField: 'email',
+            usernameField: 'username',
             passwordField: 'password',
             passReqToCallback: true
         },
 
-        function(req, email, password, done){
+        function(req, username, password, done){
 
-            User.findOne({'local.email': email}, function(err, user){
+            Team.findOne({'local.username': username}, function(err, team){
 
                 if (err) {
                     return done(err);
                 }
 
-                if (user) {
-                    // User already registered
+                if (team) {
+                    // Team already registered
                     return done(null, false);
                 }
                 else{
 
-                    var newUser = new User();
-                    newUser.local.email = email;
-                    newUser.local.password = newUser.generateHash(password);
+                    var newTeam = new Team();
+                    newTeam.local.username = username;
+                    newTeam.local.password = newTeam.generateHash(password);
 
-                    newUser.save(function(err){
+                    newTeam.save(function(err){
                         if (err) {
                             throw err;
                         }
-                            return done(null, newUser);
+                            return done(null, newTeam);
                     });
                 }
             });
@@ -80,17 +78,17 @@ module.exports = function(passport){
 
 
     // Specify serialize and deserialize methods for passport
-    passport.serializeUser(function(user, done){
+    passport.serializeUser(function(team, done){
         
         // Can use tokens in the future
-        done(null, user.id);
+        done(null, team.id);
     });
 
     passport.deserializeUser(function(id, done){
         
-        // retrieve user from the info
-        User.findById(id, function (err, user) {
-            done(err, user);
+        // retrieve team from the info
+        Team.findById(id, function (err, team) {
+            done(err, team);
         });
     });
 
