@@ -27,6 +27,9 @@ module.exports = function (app, passport) {
     });
 
     app.get('/profile', isLoggedIn, function (req, res) {
+        if (req.user.local.username == "admin") {
+            res.redirect('/admin');
+        }
         var data = appData;
         data.team = req.user;
         res.render('profile.ejs', data);
