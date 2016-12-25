@@ -18,8 +18,8 @@ The DoCW Tic Toc Website
   - [ ] User page with progress
   - [ ] Answer the question
   - [ ] Leaderboard
-  - [ ] Login
-  - [ ] Register
+  - [x] Login
+  - [x] Register
   - [ ] Admin Panel
   - [ ] News Bulletin
   - [ ] FB API for activity

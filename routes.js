@@ -9,7 +9,7 @@ module.exports = function (app, passport) {
     app.get('/', function (req, res) {
         if (req.isAuthenticated()) {
             var data = appData;
-            data.user = req.user;
+            data.team = req.user;
             res.render('index.ejs', data);
         }else{
             res.render('index_loggedout.ejs', appData);
@@ -28,7 +28,7 @@ module.exports = function (app, passport) {
 
     app.get('/profile', isLoggedIn, function (req, res) {
         var data = appData;
-        data.user = req.user;
+        data.team = req.user;
         res.render('profile.ejs', data);
     });
 
@@ -59,7 +59,7 @@ function isLoggedIn(req, res, next) {
         return next();
     }
 
-    res.redirect('/login');
+    res.redirect('/login?notAuth');
 }
 
 function isLoggedOut(req, res, next) {
