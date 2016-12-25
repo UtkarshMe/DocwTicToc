@@ -37,6 +37,11 @@ module.exports = function (app, passport) {
         res.redirect('/');
     });
 
+    app.get('/admin', isAdmin, function (req, res) {
+        var data = appData;
+        data.team = req.user;
+        res.render('admin.ejs', data);
+    });
 
 
     // Handle POST requests
@@ -72,6 +77,14 @@ function isLoggedOut(req, res, next) {
 
 function isLoggedOut(req, res, next) {
     if (!req.isAuthenticated()) {
+        return next();
+    }
+
+    res.redirect('/profile');
+}
+
+function isAdmin(req, res, next) {
+    if (req.isAuthenticated() && req.user.local.username == "admin") {
         return next();
     }
 
