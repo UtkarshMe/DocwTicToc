@@ -8,7 +8,19 @@ var teamSchema = mongoose.Schema({
     {
         username: String,
         password: String,
-        level: Number
+        members:[
+        {
+            name: String,
+            id: String,
+        }],
+        game:
+        {
+            level: Number,
+            time_left: Number,
+            time_elapsed: Number,
+            score: Number
+        }
+
     }
 
 });
