@@ -61,26 +61,6 @@ module.exports = function (app, passport) {
     }));
 
 
-
-    // Handle api calls
-    
-    app.get('/api/users/', isAdmin, function(req, res){
-        var Teams = require('./models/team.js');
-        Teams.find({}, function(err, teams){
-
-            if (err) {
-                throw err;
-            }else{
-                var content = [];
-                teams.forEach(function (team) {
-                    content.push(team.local);
-                });
-                res.send(JSON.stringify(content));
-            }
-        });
-    });
-
-
 }
 
 function isLoggedIn(req, res, next) {
