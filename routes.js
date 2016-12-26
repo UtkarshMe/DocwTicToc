@@ -1,4 +1,6 @@
 var fs = require('fs');
+var validate = require('validator');
+var Team = require('./models/team.js');
 
 module.exports = function (app, passport) {
 
@@ -8,6 +10,9 @@ module.exports = function (app, passport) {
     
     app.get('/', function (req, res) {
         if (req.isAuthenticated()) {
+            if(req.user.local.status == 0)
+                res.redirect('/signup/step2');
+
             var data = appData;
             data.team = req.user;
             res.render('index.ejs', data);
@@ -26,12 +31,18 @@ module.exports = function (app, passport) {
         res.render('signup.ejs', appData);
     });
 
-    app.get('/signup/step2', isLoggedOut, function (req, res) {
+    app.get('/signup/step2', isLoggedIn, function (req, res) {
+        if(req.user.local.status != 0)
+            res.redirect('/profile');
+
         appData.message = "Put a message in me";
         res.render('signup_step2.ejs', appData);
     });
 
     app.get('/profile', isLoggedIn, function (req, res) {
+        if(req.user.local.status == 0)
+            res.redirect('/signup/step2');
+
         if (req.user.local.username == "admin") {
             res.redirect('/admin');
         }else{
@@ -66,6 +77,49 @@ module.exports = function (app, passport) {
     }));
 
 
+    app.post('/signup/step2', isLoggedIn, function(req, res){
+
+        if(req.user.local.status != 0)
+            res.redirect('/profile');
+
+        // Validate data
+        var i = 0;
+        var error = 0;
+        while(i < 4){
+            req.body.member[i] = validate.trim(req.body.member[i]);
+            error += validate.isEmpty(req.body.member[i]);
+            error += !validate.isAlphanumeric(req.body.member[i]);
+            i++;
+        }
+        error += validate.isEmpty(req.body.phone);
+
+
+        if(error){
+            res.redirect('/signup/step2?failed');
+        }else{
+
+            var i = 0;
+            var members = [];
+            while(i < 4){
+                members.push(req.body.member[i++]);
+            }
+
+            var query = { 'local.username': req.user.local.username };
+            var update = {
+                $set: {'local.phone': req.body.phone, 'local.status': 1},
+                $push: { 'local.member': {$each: members }}
+            };
+            var opts = { strict: false };
+
+            Team.update(query, update, opts, function (err) {
+                if (err) {
+                    res.redirect('/signup/step2?failed');
+                } else {
+                    res.redirect('/profile');
+                }
+            });
+        }
+    });
 }
 
 function isLoggedIn(req, res, next) {
