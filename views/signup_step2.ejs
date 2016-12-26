@@ -72,11 +72,14 @@
         <br />
         <div class="col-md-6 col-md-offset-3">
           <form class="form-signin" action="/signup" method="post">
-            <h2 class="form-signin-heading">Please sign up or <a href="/login">Sign In</a></h2>
-            <label for="inputEmail" class="sr-only">Team Name</label>
-            <input type="text" id="inputEmail" name="username" class="form-control" placeholder="A cool team name" required autofocus>
-            <label for="inputPassword" class="sr-only">Secret Key</label>
-            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="A secret key" required><br />
+            <h2 class="form-signin-heading">Just one more step...</h2>
+
+            <% var i; for (i = 1; i < 5; i++){ %>
+            <input type="text" name="member<%= i %>" class="form-control" placeholder="Member <%= i %> name" required autofocus>
+            <% } %>
+            <br />
+
+            <input type="text" name="phone" class="form-control" placeholder="Phone number" required><br />
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign me up</button>
           </form>
         </div>
