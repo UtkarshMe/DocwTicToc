@@ -26,6 +26,11 @@ module.exports = function (app, passport) {
         res.render('signup.ejs', appData);
     });
 
+    app.get('/signup/step2', isLoggedOut, function (req, res) {
+        appData.message = "Put a message in me";
+        res.render('signup_step2.ejs', appData);
+    });
+
     app.get('/profile', isLoggedIn, function (req, res) {
         if (req.user.local.username == "admin") {
             res.redirect('/admin');
@@ -56,7 +61,7 @@ module.exports = function (app, passport) {
     }));
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/profile',
+        successRedirect: '/signup/step2',
         failureRedirect: '/signup?failed',
     }));
 
