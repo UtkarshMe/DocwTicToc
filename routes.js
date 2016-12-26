@@ -29,10 +29,11 @@ module.exports = function (app, passport) {
     app.get('/profile', isLoggedIn, function (req, res) {
         if (req.user.local.username == "admin") {
             res.redirect('/admin');
+        }else{
+            var data = appData;
+            data.team = req.user;
+            res.render('profile.ejs', data);
         }
-        var data = appData;
-        data.team = req.user;
-        res.render('profile.ejs', data);
     });
 
     app.get('/logout', function (req, res) {
@@ -43,9 +44,9 @@ module.exports = function (app, passport) {
     app.get('/admin', isAdmin, function (req, res) {
         var data = appData;
         data.team = req.user;
+        data.content = "this";
         res.render('admin.ejs', data);
     });
-
 
     // Handle POST requests
 
@@ -58,6 +59,26 @@ module.exports = function (app, passport) {
         successRedirect: '/profile',
         failureRedirect: '/signup?failed',
     }));
+
+
+
+    // Handle api calls
+    
+    app.get('/api/users/', isAdmin, function(req, res){
+        var Teams = require('./models/team.js');
+        Teams.find({}, function(err, teams){
+
+            if (err) {
+                throw err;
+            }else{
+                var content = [];
+                teams.forEach(function (team) {
+                    content.push(team.local);
+                });
+                res.send(JSON.stringify(content));
+            }
+        });
+    });
 
 
 }
