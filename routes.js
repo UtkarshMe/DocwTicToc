@@ -27,9 +27,13 @@ module.exports = function (app, passport) {
     });
 
     app.get('/profile', isLoggedIn, function (req, res) {
-        var data = appData;
-        data.team = req.user;
-        res.render('profile.ejs', data);
+        if (req.user.local.username == "admin") {
+            res.redirect('/admin');
+        }else{
+            var data = appData;
+            data.team = req.user;
+            res.render('profile.ejs', data);
+        }
     });
 
     app.get('/logout', function (req, res) {
@@ -37,7 +41,12 @@ module.exports = function (app, passport) {
         res.redirect('/');
     });
 
-
+    app.get('/admin', isAdmin, function (req, res) {
+        var data = appData;
+        data.team = req.user;
+        data.content = "this";
+        res.render('admin.ejs', data);
+    });
 
     // Handle POST requests
 
@@ -52,6 +61,26 @@ module.exports = function (app, passport) {
     }));
 
 
+
+    // Handle api calls
+    
+    app.get('/api/users/', isAdmin, function(req, res){
+        var Teams = require('./models/team.js');
+        Teams.find({}, function(err, teams){
+
+            if (err) {
+                throw err;
+            }else{
+                var content = [];
+                teams.forEach(function (team) {
+                    content.push(team.local);
+                });
+                res.send(JSON.stringify(content));
+            }
+        });
+    });
+
+
 }
 
 function isLoggedIn(req, res, next) {
@@ -64,6 +93,22 @@ function isLoggedIn(req, res, next) {
 
 function isLoggedOut(req, res, next) {
     if (!req.isAuthenticated()) {
+        return next();
+    }
+
+    res.redirect('/profile');
+}
+
+function isLoggedOut(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return next();
+    }
+
+    res.redirect('/profile');
+}
+
+function isAdmin(req, res, next) {
+    if (req.isAuthenticated() && req.user.local.username == "admin") {
         return next();
     }
 

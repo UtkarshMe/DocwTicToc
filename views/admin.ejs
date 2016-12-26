@@ -20,10 +20,7 @@
     <!-- Custom styles for this template -->
     <link href="/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/sticky-footer.css" type="text/css" media="screen" title="no title" charset="">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/js/ie-emulation-modes-warning.js"></script>
+    <link rel="stylesheet" href="/css/admin.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -44,16 +41,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><i class="fa fa-<%= app.logo %>"></i> <%= app.title %></a>
+          <a class="navbar-brand" href="<%= app.home %>"><i class="fa fa-<%= app.logo %>"></i> <%= app.title %></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="<%= app.home %>"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#about"><i class="fa fa-users"></i> About</a></li>
             <li><a href="#contact"><i class="fa fa-envelope"></i> Contact</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="/profile"><i class="fa fa-user-circle fa-lg"></i>&nbsp; <%= team.local.username %></a></li>
+              <li class="active">
+                  <a href="/profile"><i class="fa fa-user-circle fa-lg"></i>&nbsp; <%= team.local.username %></a>
+              </li>
             <li>
               <form action="/logout" method="get" class="navbar-form navbar-right">&nbsp;
                 <button type="submit" class="btn btn-success"><i class="fa fa-sign-out"></i> Sign out</button>
@@ -66,14 +65,49 @@
 
 
     <div class="container">
-        <!-- Place your code here -->
-    </div> <!-- /container -->
-
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">&copy; <%= app.company %></p>
+      <div class="row">
+        <div class="col-sm-12 main">
+          <ul class="nav nav-pills" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a>
+            </li>
+            <li role="presentation">
+                <a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a>
+            </li>
+            <li role="presentation">
+                <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a>
+            </li>
+            <li role="presentation">
+                <a href="#killer" aria-controls="killer" role="tab" data-toggle="tab">Killer</a>
+            </li>
+          </ul> <br />
+        </div>
       </div>
-    </footer>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <br /> <br /> <br />
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade in active" id="overview">
+                <!-- Overview tab content -->
+                  <i class="fa fa-cog fa-spin fa-5x fa-fw" id="content"></i>  
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="users">
+                <!-- Users tab content -->
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="messages">
+                <!-- Messages tab content -->
+              
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="killer">
+                <!-- Killer tab content -->
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <!-- Bootstrap core JavaScript
@@ -84,5 +118,8 @@
     <script src="/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- script for admin panel -->
+    <script type="text/javascript" charset="utf-8" src="/js/adminPanel.js"></script>
   </body>
 </html>
