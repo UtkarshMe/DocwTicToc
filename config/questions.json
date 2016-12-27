@@ -1,0 +1,74 @@
+{
+    "0":
+    {
+        "question": "Wrong level bro. Type 'heya' in answer to continue",
+        "answer": "level1",
+        "time": 60
+    },
+    "1":
+    {
+        "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "answer": "level1",
+        "time": 60
+    },
+    "2":
+    {
+        "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "answer": "level2",
+        "time": 60
+    },
+    "3":
+    {
+        "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "answer": "level3",
+        "time": 60
+    },
+    "4":
+    {
+        "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "answer": "level4",
+        "time": 60
+    },
+    "5":
+    {
+        "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "answer": "level5",
+        "time": 60
+    },
+    "6":
+    {
+        "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "answer": "level6",
+        "time": 60
+    },
+    "7":
+    {
+        "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "answer": "level7",
+        "time": 60
+    },
+    "8":
+    {
+        "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "answer": "level8",
+        "time": 60
+    },
+    "9":
+    {
+        "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "answer": "level9",
+        "time": 60
+    },
+    "10":
+    {
+        "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "answer": "level10",
+        "time": 60
+    },
+    "11":
+    {
+        "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "answer": "level11",
+        "time": 60
+    }
+}

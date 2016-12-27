@@ -1,3 +1,4 @@
+fs = require('fs');
 module.exports = function(app, passport){
 
     app.get('/api/users/', isAdmin, function(req, res){
@@ -38,6 +39,17 @@ module.exports = function(app, passport){
                 res.send(JSON.stringify(content));
             }
         });
+    });
+
+    
+    app.get('/api/question/', isLoggedIn, function(req, res){
+
+        var Game = JSON.parse(fs.readFileSync('./config/questions.json'));
+        var content = [];
+        console.log(Game);
+        console.log(req.user);
+        content.push(Game[req.user.local.game.level].question);
+        res.send(JSON.stringify(content));
     });
 }
 

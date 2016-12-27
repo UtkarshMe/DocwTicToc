@@ -12,7 +12,7 @@ var teamSchema = mongoose.Schema({
         phone: String,
         game:
         {
-            level: { type: Number, default: 0 },
+            level: { type: Number, default: 1 },
             time_left: Number,
             time_elapsed: Number,
             score: { type: Number, default: 0 }
