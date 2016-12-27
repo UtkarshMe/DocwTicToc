@@ -46,8 +46,6 @@ module.exports = function(app, passport){
 
         var Game = JSON.parse(fs.readFileSync('./config/questions.json'));
         var content = [];
-        console.log(Game);
-        console.log(req.user);
         content.push(Game[req.user.local.game.level].question);
         res.send(JSON.stringify(content));
     });
