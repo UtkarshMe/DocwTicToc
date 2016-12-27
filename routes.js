@@ -10,9 +10,6 @@ module.exports = function (app, passport) {
     
     app.get('/', function (req, res) {
         if (req.isAuthenticated()) {
-            if(req.user.local.status == 0)
-                res.redirect('/signup/step2');
-
             var data = appData;
             data.team = req.user;
             res.render('index.ejs', data);
@@ -31,25 +28,17 @@ module.exports = function (app, passport) {
         res.render('signup.ejs', appData);
     });
 
-    app.get('/signup/step2', isLoggedIn, function (req, res) {
-        if(req.user.local.status != 0)
-            res.redirect('/profile');
-
+    app.get('/signup/step2', inStepTwo, function (req, res) {
         appData.message = "Put a message in me";
-        res.render('signup_step2.ejs', appData);
+        var data = appData;
+        data.team = req.user;
+        res.render('signup_step2.ejs', data);
     });
 
     app.get('/profile', isLoggedIn, function (req, res) {
-        if(req.user.local.status == 0)
-            res.redirect('/signup/step2');
-
-        if (req.user.local.username == "admin") {
-            res.redirect('/admin');
-        }else{
-            var data = appData;
-            data.team = req.user;
-            res.render('profile.ejs', data);
-        }
+        var data = appData;
+        data.team = req.user;
+        res.render('profile.ejs', data);
     });
 
     app.get('/logout', function (req, res) {
@@ -66,21 +55,18 @@ module.exports = function (app, passport) {
 
     // Handle POST requests
 
-    app.post('/login', passport.authenticate('local-login', {
+    app.post('/login', isLoggedOut, passport.authenticate('local-login', {
         successRedirect: '/profile',
         failureRedirect: '/login?failed',
     }));
 
-    app.post('/signup', passport.authenticate('local-signup', {
+    app.post('/signup', isLoggedOut, passport.authenticate('local-signup', {
         successRedirect: '/signup/step2',
         failureRedirect: '/signup?failed',
     }));
 
 
-    app.post('/signup/step2', isLoggedIn, function(req, res){
-
-        if(req.user.local.status != 0)
-            res.redirect('/profile');
+    app.post('/signup/step2', inStepTwo, function(req, res){
 
         // Validate data
         var i = 0;
@@ -138,16 +124,16 @@ function isLoggedOut(req, res, next) {
     res.redirect('/profile');
 }
 
-function isLoggedOut(req, res, next) {
-    if (!req.isAuthenticated()) {
+function isAdmin(req, res, next) {
+    if (req.isAuthenticated() && req.user.local.username == "admin") {
         return next();
     }
 
     res.redirect('/profile');
 }
 
-function isAdmin(req, res, next) {
-    if (req.isAuthenticated() && req.user.local.username == "admin") {
+function inStepTwo(req, res, next) {
+    if (req.isAuthenticated() && req.user.local.status == 0) {
         return next();
     }
 
