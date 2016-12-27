@@ -13,7 +13,7 @@ var teamSchema = mongoose.Schema({
         game:
         {
             level: { type: Number, default: 1 },
-            time_left: Number,
+            time_left: { type: Number, default: 200 },
             time_elapsed: Number,
             score: { type: Number, default: 0 }
         },

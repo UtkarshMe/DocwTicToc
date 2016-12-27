@@ -16,8 +16,8 @@ The DoCW Tic Toc Website
 
 ### To do
   - [ ] User page with progress
-  - [ ] Answer the question
-  - [ ] Leaderboard
+  - [x] Answer the question
+  - [x] Leaderboard
   - [x] Login
   - [x] Register
   - [ ] Admin Panel

@@ -10,9 +10,6 @@ module.exports = function (app, passport) {
     
     app.get('/', function (req, res) {
         if (req.isAuthenticated()) {
-            if(req.user.local.status == 0)
-                res.redirect('/signup/step2');
-
             var data = appData;
             data.team = req.user;
             res.render('index.ejs', data);
@@ -40,9 +37,6 @@ module.exports = function (app, passport) {
     });
 
     app.get('/profile', isLoggedIn, function (req, res) {
-        if(req.user.local.status == 0)
-            res.redirect('/signup/step2');
-
         if (req.user.local.username == "admin") {
             res.redirect('/admin');
         }else{
@@ -76,6 +70,35 @@ module.exports = function (app, passport) {
         failureRedirect: '/signup?failed',
     }));
 
+    app.post('/checkanswer', isLoggedIn, function(req, res){
+        // Validate data
+        var answer = validate.trim(req.body.answer);
+        var error = validate.isEmpty(answer);
+        error += validate.isAlphanumeric(answer) ? 0 : 1;
+
+        if (error) {
+            res.redirect('/?wrongAnswer');
+        } else {
+            var questions = JSON.parse(fs.readFileSync('./config/questions.json'));
+            var correctAnswer = questions[req.user.local.game.level].answer;
+            if (answer == correctAnswer) {
+                // Run query to increase level
+                var query = { 'local.username': req.user.local.username };
+                var update = { $set: { 'local.game.level': req.user.local.game.level + 1 } };
+                var options = { strict: false };
+
+                Team.update(query, update, options, function(err){
+                    if (err) {
+                        res.redirect('/?err');
+                    }else{
+                        res.redirect('/?success');
+                    }
+                });
+            }else{
+                res.redirect('/?wrongAnswer');
+            }
+        }
+    });
 
     app.post('/signup/step2', isLoggedIn, function(req, res){
 

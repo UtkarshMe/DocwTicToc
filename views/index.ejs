@@ -71,10 +71,12 @@
         <br /> <br />
       </div>
       <div class="row">
-        <form>
+        <form action="/checkAnswer" method="post" accept-charset="utf-8">
           <div class="col-md-8">
             <div class="col-md-7">
-                <h1>Level 10 <br /> <small>Time till blast: <span class="label label-danger">00:45</span> </small></h1>
+                <h1>Level <%= team.local.game.level %> <br />
+                    <small>Time till blast: <%= team.local.game.time_left %> min</small>
+                </h1>
             <br />
             </div>
             <div class="col-md-12">
