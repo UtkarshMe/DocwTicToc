@@ -34,6 +34,8 @@ app.use(morgan('tiny'));
 
 // Connect database
 var mongoose = require('mongoose');
+//Use global promise for mongoose
+mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://"+config.db.host+":"+config.db.port+"/database");
 
 

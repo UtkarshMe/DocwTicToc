@@ -66,7 +66,45 @@
 
 
     <div class="container">
-        <!-- Place your code here -->
+      <br />
+      <div class="hidden-sm hidden-xs">
+        <br /> <br />
+      </div>
+      <div class="row">
+        <form action="/checkAnswer" method="post" accept-charset="utf-8">
+          <div class="col-md-8">
+            <div class="col-md-7">
+                <h1>Level <%= team.local.game.level %> <br />
+                    <small>Time till blast: <%= team.local.game.time_left %> min</small>
+                </h1>
+            <br />
+            </div>
+            <div class="col-md-12">
+              <div id="question" class="form-group">
+                <h3><i class="fa fa-cog fa-spin fa-fw"></i> Loading...</h3>
+              </div>
+            </div>
+
+            <div class="col-md-10 form-group">
+              <input type="text" value="" name="answer" class="form-control" placeholder="Put your answer in me" autofocus/> 
+            </div>
+            <div class="col-md-2 form-group">
+              <input type="submit" name="submit" value="Send" class="btn btn-primary form-control" />
+            </div>
+
+          </div>
+        </form>
+        <div class="col-md-4">
+            <br />
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h4>Leaderboard</h4>
+            </div>
+            <table id="leaderboard" class="table text-center">
+            </table>
+          </div>
+        </div>
+      </div>
     </div> <!-- /container -->
 
     <footer class="footer">
@@ -74,7 +112,9 @@
         <p class="text-muted">&copy; <%= app.company %></p>
       </div>
     </footer>
-
+    
+    <script type="text/javascript" charset="utf-8" src="/js/leaderboard.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/js/game.js"></script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
