@@ -30,11 +30,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/themes/<%= app.theme %>_bootstrap.css" type="text/css" media="screen" title="no title" charset="utf-8">
   </head>
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <nav class="navbar navbar-<%= app.navbar.style %> navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">

@@ -9,6 +9,10 @@
             "long": "Answer simple questions and win the whole damn world. This is nothing but the best thing ever. Get ready to have the time of your life mofos!! Also, UTkarsh rocks!"
         },
         "logo":"clock-o",
-        "company": "Department of Creative Works, BITS Goa"
+        "company": "Department of Creative Works, BITS Goa",
+        "theme": "lumen",
+        "navbar":{
+            "style": "default"
+        }
     }
 }
