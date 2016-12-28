@@ -1,0 +1,54 @@
+{
+    "0":
+    {
+        "heading": "Objective",
+        "points":
+        {
+            "0": "Get stuff done",
+            "1": "Get it done as fast as possible",
+            "2": "Success is yours"
+        }
+    },
+    "1":
+    {
+        "heading": "How to",
+        "points":
+        {
+            "0": "Don't ask me",
+            "1": "I can't tell you",
+            "2": "I really don't know",
+            "3": "Why do you keep asking me",
+            "4": "Can't help you there bro"
+        }
+    },
+    "2":
+    {
+        "heading": "Why should you do it",
+        "points":
+        {
+            "0": "Because I told you so",
+            "1": "Get it done as fast as possible"
+        }
+    },
+    "3":
+    {
+        "heading": "Help",
+        "points":
+        {
+            "0": "Use message box for asking",
+            "1": "All doubts get cleared there",
+            "2": "Hue hue hue"
+        }
+    },
+    "4":
+    {
+        "heading": "Term and Conditions",
+        "points":
+        {
+            "0": "DoCW can change rules anytime",
+            "1": "We can disqualify anyone",
+            "2": "We can add new levels anytime",
+            "3": "Basically, we're gods"
+        }
+    }
+}
