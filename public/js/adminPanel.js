@@ -27,8 +27,7 @@ function loadDoc() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var users = JSON.parse(this.responseText);
-            var out = '<h1>Users <small> All the wonderful users</small></h1><br />';
-            out +='<div class="table-responsive"><table class="table"><tbody>';
+            var out = '<div class="table-responsive"><table class="table"><tbody>';
             var count = 1;
             users.forEach(function(user){
                 out += '<tr>';
@@ -47,14 +46,14 @@ function loadDoc() {
                 else
                     out += '<td></td><td></td><td></td><td></td><td></td>';
                 out += '<td class="actions">';
-                out += '<i class="ban fa fa-pencil-square-o" onclick="userEdit(\''+user.username+'\', 0)"></i> &nbsp; ';
+                out += '<i class="edit fa fa-pencil-square-o" onclick="userEdit(\''+user.username+'\', 0)"></i> &nbsp; ';
                 out += '<i class="check fa fa-check" onclick="userEdit(\''+user.username+'\', 1)"></i> &nbsp; ';
-                out += '<i class="edit fa fa-ban" onclick="userEdit(\''+user.username+'\', 2)"></i></td>';
+                out += '<i class="ban fa fa-ban" onclick="userEdit(\''+user.username+'\', 2)"></i></td>';
                 out += '</tr>';
             });
             out += '</tbody></table></div>';
 
-            document.getElementById('users').innerHTML = out;
+            document.getElementById('loadUsers').innerHTML = out;
 
         }
     };
