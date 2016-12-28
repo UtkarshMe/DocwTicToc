@@ -27,7 +27,7 @@ function loadDoc() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var users = JSON.parse(this.responseText);
-            var out = '<div class="table-responsive"><table class="table"><tbody>';
+            var out = '<div class="table-responsive"><table class="table table-hover table-striped"><tbody>';
             var count = 1;
             users.forEach(function(user){
                 out += '<tr>';
