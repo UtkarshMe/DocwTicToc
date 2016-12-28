@@ -103,3 +103,19 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+
+/*
+ * Custom css for users
+ */
+.actions .edit{
+    color: teal;
+}
+
+.actions .ban{
+    color: crimson;
+}
+
+.actions .check{
+    color: green;
+}

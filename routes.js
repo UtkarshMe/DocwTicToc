@@ -28,12 +28,11 @@ module.exports = function (app, passport) {
         res.render('signup.ejs', appData);
     });
 
-    app.get('/signup/step2', isLoggedIn, function (req, res) {
-        if(req.user.local.status != 0)
-            res.redirect('/profile');
-
+    app.get('/signup/step2', inStepTwo, function (req, res) {
         appData.message = "Put a message in me";
-        res.render('signup_step2.ejs', appData);
+        var data = appData;
+        data.team = req.user;
+        res.render('signup_step2.ejs', data);
     });
 
     app.get('/profile', isLoggedIn, function (req, res) {
@@ -60,12 +59,12 @@ module.exports = function (app, passport) {
 
     // Handle POST requests
 
-    app.post('/login', passport.authenticate('local-login', {
+    app.post('/login', isLoggedOut, passport.authenticate('local-login', {
         successRedirect: '/profile',
         failureRedirect: '/login?failed',
     }));
 
-    app.post('/signup', passport.authenticate('local-signup', {
+    app.post('/signup', isLoggedOut, passport.authenticate('local-signup', {
         successRedirect: '/signup/step2',
         failureRedirect: '/signup?failed',
     }));
@@ -100,10 +99,7 @@ module.exports = function (app, passport) {
         }
     });
 
-    app.post('/signup/step2', isLoggedIn, function(req, res){
-
-        if(req.user.local.status != 0)
-            res.redirect('/profile');
+    app.post('/signup/step2', inStepTwo, function(req, res){
 
         // Validate data
         var i = 0;
@@ -161,16 +157,16 @@ function isLoggedOut(req, res, next) {
     res.redirect('/profile');
 }
 
-function isLoggedOut(req, res, next) {
-    if (!req.isAuthenticated()) {
+function isAdmin(req, res, next) {
+    if (req.isAuthenticated() && req.user.local.username == "admin") {
         return next();
     }
 
     res.redirect('/profile');
 }
 
-function isAdmin(req, res, next) {
-    if (req.isAuthenticated() && req.user.local.username == "admin") {
+function inStepTwo(req, res, next) {
+    if (req.isAuthenticated() && req.user.local.status == 0) {
         return next();
     }
 

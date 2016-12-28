@@ -72,7 +72,7 @@
                 <a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a>
             </li>
             <li role="presentation">
-                <a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a>
+                <a href="#users" aria-controls="users" role="tab" data-toggle="tab" onclick="loadDoc()">Users</a>
             </li>
             <li role="presentation">
                 <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a>
@@ -80,28 +80,40 @@
             <li role="presentation">
                 <a href="#killer" aria-controls="killer" role="tab" data-toggle="tab">Killer</a>
             </li>
-          </ul> <br />
+          </ul>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <div class="text-center">
-            <br /> <br /> <br />
+          <div class="text-left">
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade in active" id="overview">
                 <!-- Overview tab content -->
+                <br /> <br /> <br />
+                <div class="text-center">
                   <i class="fa fa-cog fa-spin fa-5x fa-fw" id="content"></i>  
+                </div>
               </div>
               <div role="tabpanel" class="tab-pane fade" id="users">
-                <!-- Users tab content -->
+                <div class="text-left">
+                  <h1>Users <small> All the wonderful users</small></h1><br />
+                  <div id="loadUsers">
+                    <br /> <br /> <br />
+                    <i class="fa fa-cog fa-spin fa-5x fa-fw" id="content"></i>  
+                  </div>
+                </div>
               </div>
               <div role="tabpanel" class="tab-pane fade" id="messages">
-                <!-- Messages tab content -->
-              
+                <br /> <br /> <br />
+                <div class="text-center">
+                  <i class="fa fa-cog fa-spin fa-5x fa-fw" id="content"></i>  
+                </div>
               </div>
               <div role="tabpanel" class="tab-pane fade" id="killer">
-                <!-- Killer tab content -->
-              
+                <br /> <br /> <br />
+                <div class="text-center">
+                  <i class="fa fa-cog fa-spin fa-5x fa-fw" id="content"></i>  
+                </div>
               </div>
             </div>
           </div>
