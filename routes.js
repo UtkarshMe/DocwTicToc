@@ -68,7 +68,7 @@ module.exports = function (app, passport) {
     // Handle POST requests
 
     app.post('/login', isLoggedOut, passport.authenticate('local-login', {
-        successRedirect: '/profile',
+        successRedirect: '/',
         failureRedirect: '/login?failed',
     }));
 
@@ -142,7 +142,7 @@ module.exports = function (app, passport) {
                 if (err) {
                     res.redirect('/signup/step2?failed');
                 } else {
-                    res.redirect('/profile');
+                    res.redirect('/');
                 }
             });
         }
