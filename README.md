@@ -15,7 +15,7 @@ The DoCW Tic Toc Website
         node server.js
 
 ### To do
-  - [ ] User page with progress
+  - [x] User page with progress
   - [x] Answer the question
   - [x] Leaderboard
   - [x] Login
