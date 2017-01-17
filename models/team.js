@@ -6,7 +6,7 @@ var teamSchema = mongoose.Schema({
 
     local:
     {
-        username: String,
+        username: { type: String, lowercase: true },
         password: String,
         member: [ String ],
         phone: String,
@@ -17,8 +17,8 @@ var teamSchema = mongoose.Schema({
             time_elapsed: Number,
             score: { type: Number, default: 0 }
         },
-        status: { type: Number, default: 0 }
-
+        status: { type: Number, default: 0 },
+        last_read_news: { type: Date, default: Date.now }
     }
 
 });

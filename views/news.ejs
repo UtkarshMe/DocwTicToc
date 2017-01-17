@@ -49,13 +49,13 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#about"><i class="fa fa-users"></i> About</a></li>
             <li><a href="#contact"><i class="fa fa-envelope"></i> Contact</a></li>
-            <li><a href="/news"><i class="fa fa-bullhorn"></i> News</a></li>
+            <li class="active"><a href="/news"><i class="fa fa-bullhorn"></i> News</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="/profile"><i class="fa fa-user-circle fa-lg"></i>&nbsp; <%= team.local.username %></a></li>
+            <li><a href="/profile"><i class="fa fa-user-circle fa-lg"></i>&nbsp; <%= team.local.username %></a></li>
             <li>
               <form action="/logout" method="get" class="navbar-form navbar-right">&nbsp;
                 <button type="submit" class="btn btn-success"><i class="fa fa-sign-out"></i> Sign out</button>
@@ -73,41 +73,48 @@
         <br /> <br />
       </div>
       <div class="row">
-        <form action="/checkAnswer" method="post" accept-charset="utf-8">
-          <div class="col-md-8">
-            <div class="col-md-7">
-                <h1>Level <%= team.local.game.level %> <br />
-                    <small>Time till blast: <%= team.local.game.time_left %> min</small>
-                </h1>
-            <br />
-            </div>
-            <div class="col-md-12">
-              <div id="question" class="form-group">
-                <h3><i class="fa fa-cog fa-spin fa-fw"></i> Loading...</h3>
-              </div>
-            </div>
-
-            <div class="col-md-10 form-group">
-              <input type="text" value="" name="answer" class="form-control" placeholder="Put your answer in me" autofocus/> 
-            </div>
-            <div class="col-md-2 form-group">
-              <input type="submit" name="submit" value="Send" class="btn btn-primary form-control" />
-            </div>
-
-          </div>
-        </form>
-        <div class="col-md-4">
-            <br />
-          <div class="panel panel-default">
-            <div class="panel-heading text-center">
-                <h4>Leaderboard</h4>
-            </div>
-            <table id="leaderboard" class="table text-center">
-            </table>
-          </div>
+        <div class="col-md-12">
+          <h1>News Bulletin</h1> <br />
+          <br />
         </div>
+
+        <!-- News element starts -->
+        <div class="col-md-12">
+          <h4>A big news headline like a title is here <br />
+            <small>12:30, 12 Aug, 2016</small></h3>
+          </p>
+          <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae felis sit amet felis lacinia interdum. Curabitur ac sapien nec justo molestie interdum et a mauris. Proin velit lacus, luctus ut nisi sed, fermentum tempus arcu. In libero nunc, volutpat eu nisl in, aliquet malesuada tellus. Curabitur iaculis, mauris vitae tempor molestie, mi est bibendum enim, non placerat ligula metus ut lorem. Vestibulum ac aliquet odio, eu gravida velit. Proin accumsan nec sem quis vehicula.
+          </p>
+          <br /> <br />
+        </div>
+        <!-- News element ends -->
+        <!-- News element starts -->
+        <div class="col-md-12">
+          <h4>A big news headline like a title is here <br />
+            <small>12:30, 12 Aug, 2016</small></h3>
+          </p>
+          <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae felis sit amet felis lacinia interdum. Curabitur ac sapien nec justo molestie interdum et a mauris. Proin velit lacus, luctus ut nisi sed, fermentum tempus arcu. In libero nunc, volutpat eu nisl in, aliquet malesuada tellus. Curabitur iaculis, mauris vitae tempor molestie, mi est bibendum enim, non placerat ligula metus ut lorem. Vestibulum ac aliquet odio, eu gravida velit. Proin accumsan nec sem quis vehicula.
+          </p>
+          <br /> <br />
+        </div>
+        <!-- News element ends -->
+        <!-- News element starts -->
+        <div class="col-md-12">
+          <h4>A big news headline like a title is here <br />
+            <small>12:30, 12 Aug, 2016</small></h3>
+          </p>
+          <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae felis sit amet felis lacinia interdum. Curabitur ac sapien nec justo molestie interdum et a mauris. Proin velit lacus, luctus ut nisi sed, fermentum tempus arcu. In libero nunc, volutpat eu nisl in, aliquet malesuada tellus. Curabitur iaculis, mauris vitae tempor molestie, mi est bibendum enim, non placerat ligula metus ut lorem. Vestibulum ac aliquet odio, eu gravida velit. Proin accumsan nec sem quis vehicula.
+          </p>
+          <br /> <br />
+        </div>
+        <!-- News element ends -->
+
       </div>
     </div> <!-- /container -->
+    <br /> <br />
     <br /> <br />
 
     <footer class="footer">
@@ -115,17 +122,14 @@
         <p class="text-muted">&copy; <%= app.company %></p>
       </div>
     </footer>
-    
-    <script type="text/javascript" charset="utf-8" src="/js/leaderboard.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/js/game.js"></script>
 
     <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+      <script src="/js/bootstrap.min.js"></script>
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <script src="/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>

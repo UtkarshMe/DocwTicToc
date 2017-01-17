@@ -62,6 +62,12 @@ module.exports = function (app, passport) {
         data.ins = JSON.parse(fs.readFileSync('./config/instructions.json'));
         res.render('instructions.ejs', data);
     });
+    
+    app.get('/news', isLoggedIn, function (req, res) {
+        var data = appData;
+        data.ins = JSON.parse(fs.readFileSync('./config/instructions.json'));
+        res.render('news.ejs', data);
+    });
 
 
 
