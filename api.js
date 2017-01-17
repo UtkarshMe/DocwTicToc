@@ -54,7 +54,7 @@ module.exports = function(app, passport){
 
     app.get('/api/news', isLoggedIn, function(req, res){
         var News = require('./models/news.js');
-        News.find(function (err, news){
+        News.find({}).sort('-updated').exec(function (err, news){
             res.send(news);
         });
     });
