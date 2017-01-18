@@ -62,6 +62,12 @@ module.exports = function (app, passport) {
         data.ins = JSON.parse(fs.readFileSync('./config/instructions.json'));
         res.render('instructions.ejs', data);
     });
+    
+    app.get('/news', isLoggedIn, function (req, res) {
+        var data = appData;
+        data.ins = JSON.parse(fs.readFileSync('./config/instructions.json'));
+        res.render('news.ejs', data);
+    });
 
 
 
@@ -143,6 +149,39 @@ module.exports = function (app, passport) {
                     res.redirect('/signup/step2?failed');
                 } else {
                     res.redirect('/');
+                }
+            });
+        }
+    });
+
+
+    app.post('/admin/createNews', isAdmin, function(req, res){
+
+        // Validate data
+        var title = validate.trim(req.body.title);
+        var content = validate.trim(req.body.content);
+        var level = validate.trim(req.body.level);
+        var error = validate.isEmpty(title);
+        error += validate.isEmpty(content);
+        error += validate.isEmpty(level);
+        error += !validate.isNumeric(req.body.level);
+
+        if (error) {
+            res.redirect('/?wrongAnswer');
+        } else {
+
+            var News = require('./models/news.js');
+            var news = new News({
+                title: title,
+                content: content,
+                level: level
+            });
+
+            news.save(function(err, news){
+                if (err) {
+                    res.redirect('/admin/?newsFailed');
+                } else {
+                    res.redirect('/admin/?newsSuccess');
                 }
             });
         }

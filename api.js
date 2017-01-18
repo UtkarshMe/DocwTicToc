@@ -50,6 +50,14 @@ module.exports = function(app, passport){
         content.push(Game[req.user.local.game.level].question);
         res.send(JSON.stringify(content));
     });
+
+
+    app.get('/api/news', isLoggedIn, function(req, res){
+        var News = require('./models/news.js');
+        News.find({}).sort('-updated').exec(function (err, news){
+            res.send(news);
+        });
+    });
     
 
     app.post('/api/set/status/:status/:username', isAdmin, function(req, res){

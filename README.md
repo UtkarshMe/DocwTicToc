@@ -21,5 +21,5 @@ The DoCW Tic Toc Website
   - [x] Login
   - [x] Register
   - [ ] Admin Panel
-  - [ ] News Bulletin
+  - [x] News Bulletin
   - [ ] FB API for activity
