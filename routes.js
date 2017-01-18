@@ -76,6 +76,13 @@ module.exports = function (app, passport) {
     });
 
 
+    app.get('/contact', isLoggedIn, function (req, res) {
+        var data = appData;
+        data.ins = JSON.parse(fs.readFileSync('./config/instructions.json'));
+        res.render('contact.ejs', data);
+    });
+
+
 
     // Handle POST requests
 
@@ -157,6 +164,23 @@ module.exports = function (app, passport) {
                     res.redirect('/');
                 }
             });
+        }
+    });
+
+
+    app.post('/ask', isLoggedIn, function(req, res){
+        
+        var content = validate.trim(req.body.content);
+
+        if(validate.isEmpty(content)){
+            res.redirect('/contact?empty');
+        }else{
+            var Question = require('./models/question.js');
+            var newQ = new Question;
+            newQ.team = req.user.local.username;
+            newQ.content = content;
+            newQ.save();
+            res.redirect('/contact?success');
         }
     });
 

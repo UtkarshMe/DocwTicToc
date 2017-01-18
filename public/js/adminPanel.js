@@ -1,9 +1,4 @@
-
 // Get tabs working
-$('#overview a').click(function (e) {
-    e.preventDefault();
-    $('this').tab('show');
-})
 $('#users a').click(function (e) {
     e.preventDefault();
     $('this').tab('show');
@@ -12,14 +7,10 @@ $('#messages a').click(function (e) {
     e.preventDefault();
     $('this').tab('show');
 })
-$('#killer a').click(function (e) {
+$('#news a').click(function (e) {
     e.preventDefault();
     $('this').tab('show');
 })
-
-// Get users banning and editing working
-
-
 
 // Load users
 function loadDoc() {
@@ -60,6 +51,45 @@ function loadDoc() {
     xhttp.open("GET", "/api/users", true);
     xhttp.send();
 }
+
+
+// Load News
+function loadMessages() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var messages = JSON.parse(this.responseText);
+            var out = '';
+            var count = 1;
+            messages.forEach(function(msg){
+                var date = new Date(msg.updated);
+                var month = ["January", "February", "March", "April",
+                    "May", "June", "July", "August", "September", "October",
+                    "November", "December"];
+                var hours = date.getHours();
+                var ampm = hours > 12 ? 'pm' : 'am';
+                hours = hours > 12 ? hours - 12 : hours;
+                
+                out += '<div class="col-md-12">';
+                out += '<h4 class="media-heading">' + msg.team +'<br />';
+                out += '<small>';
+                out += date.getDate() + ' ' + month[date.getMonth()];
+                out += ' at ' + hours + ':' + date.getMinutes() + ampm;
+                out += '</small></h4>';
+                out += '<p>' + msg.content + '</p>';
+                out += '<br />';
+                out += '</div>';
+            });
+
+            document.getElementById('loadMessages').innerHTML = out;
+
+        }
+    };
+    xhttp.open("GET", "/api/questions", true);
+    xhttp.send();
+}
+
+loadMessages();
 
 
 // Edit user account status

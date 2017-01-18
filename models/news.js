@@ -9,9 +9,4 @@ var newsSchema = mongoose.Schema({
 
 });
 
-newsSchema.methods.getUnreadNumber = function (readDate) {
-    return this.model('News').find({ updated : { $lt: readDate } }).length;
-}
-
-
 module.exports = mongoose.model('News', newsSchema);

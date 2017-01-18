@@ -58,6 +58,14 @@ module.exports = function(app, passport){
             res.send(news);
         });
     });
+
+
+    app.get('/api/questions', isAdmin, function(req, res){
+        var Question = require('./models/question.js');
+        Question.find({}).sort('-updated').exec(function (err, question){
+            res.send(question);
+        });
+    });
     
 
     app.post('/api/set/status/:status/:username', isAdmin, function(req, res){

@@ -49,9 +49,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="/instructions"><i class="fa fa-list-alt"></i> Rules</a></li>
-            <li><a href="/contact"><i class="fa fa-question-circle"></i> Ask a question</a></li>
+            <li class="active"><a href="/contact"><i class="fa fa-question-circle"></i> Ask a question</a></li>
             <li><a href="/news"><i class="fa fa-newspaper-o"></i> News</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -73,41 +73,15 @@
         <br /> <br />
       </div>
       <div class="row">
-        <form action="/checkAnswer" method="post" accept-charset="utf-8">
-          <div class="col-md-8">
-            <div class="col-md-7">
-                <h1>Level <%= team.local.game.level %> <br />
-                    <small>Time till blast: <%= team.local.game.time_left %> min</small>
-                </h1>
-            <br />
+        <div class="col-md-6">
+          <h1>Ask a Question <br /> <small> Ask anything about the game</small></h1><br />
+          <form action="/ask" method="post" accept-charset="utf-8">
+            <div class="form-group" id="whole-form">
+              <div class="alert alert-danger hidden" id="error-box" role="alert">Asking empty questions is just foolish</div>
+              <textarea name="content" class="form-control" placeholder="The question goes here" rows="9"></textarea> <br />
+              <input type="submit" value="Submit Question" class="btn btn-primary btn-block" />
             </div>
-            <div class="col-md-12">
-              <div id="question" class="form-group">
-                <h3><i class="fa fa-cog fa-spin fa-fw"></i> Loading...</h3>
-              </div>
-            </div>
-
-            <div class="col-md-10 form-group" id="whole-form">
-              <input type="text" value="" name="answer" class="form-control" placeholder="Put your answer in me" autofocus/> 
-              <div class="alert alert-danger hidden" id="error-box" role="alert">That's not the one I'm looking for. <br />
-                <span id="attempt-number">X</span> attempts left!
-              </div>
-            </div>
-            <div class="col-md-2 form-group">
-              <input type="submit" name="submit" value="Send" class="btn btn-primary form-control" />
-            </div>
-
-          </div>
-        </form>
-        <div class="col-md-4">
-            <br />
-          <div class="panel panel-default">
-            <div class="panel-heading text-center">
-                <h4>Leaderboard</h4>
-            </div>
-            <table id="leaderboard" class="table text-center">
-            </table>
-          </div>
+          </form>
         </div>
       </div>
     </div> <!-- /container -->
@@ -119,9 +93,6 @@
       </div>
     </footer>
     
-    <script type="text/javascript" charset="utf-8" src="/js/leaderboard.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/js/game.js"></script>
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -132,19 +103,14 @@
     <script src="/js/ie10-viewport-bug-workaround.js"></script>
     <script type="text/javascript" charset="utf-8">
         var status = window.location.search;
-        if(status == '?wrongAnswer'){
+        if(status == '?empty'){
             document.getElementById('whole-form').className += ' has-error';
             document.getElementById('error-box').className = 'alert alert-danger';
         }
-        if(status == '?rightAnswer'){
+        if(status == '?success'){
             var box = document.getElementById('error-box')
-            box.innerHTML = 'Good work, amigo!';
+            box.innerHTML = 'Your question has been submitted. If any clarification is needed, a news item regarding the same will be published soon. Anonymously, ob.';
             box.className = 'alert alert-success';
-        }
-        if(status == '?err'){
-            var box = document.getElementById('error-box')
-            box.innerHTML = 'The connection was lost. Please try again.';
-            box.className = 'alert alert-danger';
         }
     </script>
   </body>
