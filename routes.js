@@ -45,6 +45,12 @@ module.exports = function (app, passport) {
         }
     });
 
+    app.get('/profile/changepassword', isLoggedIn, function (req, res) {
+        var data = appData;
+        data.team = req.user;
+        res.render('changepassword.ejs', data);
+    });
+
     app.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/');
@@ -151,6 +157,33 @@ module.exports = function (app, passport) {
                     res.redirect('/');
                 }
             });
+        }
+    });
+
+
+    app.post('/profile/changepassword', isLoggedIn, function(req, res){
+
+        // Validate data
+        var error = 0;
+        error += validate.isEmpty(req.body.oldpass);
+        error += validate.isEmpty(req.body.newpass1);
+        error += validate.isEmpty(req.body.newpass2);
+
+        if(error || req.body.newpass1 != req.body.newpass2){
+            res.redirect('/profile/changepassword?failed');
+        }else{
+
+            Team.findOne({ 'local.username': req.user.local.username},
+                function(err, team){
+                    if (team.validPassword(req.body.oldpass)){
+                        team.local.password = team.generateHash(req.body.newpass1);
+                        team.save();
+                        res.redirect('/profile?passwordSuccess');
+                    } else {
+                        res.redirect('/profile/changepassword?wrongOldPass');
+                    }
+                }
+            );
         }
     });
 
