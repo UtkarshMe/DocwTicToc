@@ -42,18 +42,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<%= app.home %>"><i class="fa fa-<%= app.logo %>"></i> <%= app.title %></a>
+          <a class="navbar-brand" href="/"><i class="fa fa-<%= app.logo %>"></i> <%= app.title %></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<%= app.home %>"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="#about"><i class="fa fa-users"></i> About</a></li>
-            <li><a href="#contact"><i class="fa fa-envelope"></i> Contact</a></li>
+            <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="/instructions"><i class="fa fa-list-alt"></i> Rules</a></li>
+            <li><a href="/contact"><i class="fa fa-question-circle"></i> Ask a question</a></li>
+            <li><a href="/news"><i class="fa fa-newspaper-o"></i> News</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active">
-              <a href="/profile"><i class="fa fa-user-circle fa-lg"></i>&nbsp; <%= team.local.username %></a>
-            </li>
+              <li class="active">
+                <a href="/profile"><i class="fa fa-user-circle fa-lg"></i>&nbsp; <%= team.local.username %></a>
+              </li>
             <li>
               <form action="/logout" method="get" class="navbar-form navbar-right">&nbsp;
                 <button type="submit" class="btn btn-success"><i class="fa fa-sign-out"></i> Sign out</button>
