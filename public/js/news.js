@@ -8,12 +8,27 @@ function loadNews() {
             var count = 1;
             news.forEach(function(newsItem){
                 var date = new Date(newsItem.updated);
+                var icon;
+                if (newsItem.level == 1) {
+                    icon = 'exclamation-sign';
+                }else if (newsItem.level == 2) {
+                    icon = 'info-sign';
+                }else{
+                    icon = 'question-sign';
+                }
+
+
                 out += '<div class="col-md-12">';
-                out += '<h4>' + newsItem.title + '<br />';
-                out += '<small>' + date.getHours() + ':' + date.getMinutes() + ', ' + date.getDate() + '/' + date.getMonth()+1 + '</small></h3>';
+                out += '<div class="media">';
+                out += '<div class="media-left">';
+                out += '<span class="media-object glyphicon glyphicon-' + icon + '" aria-hidden="true"></span>';
+                out += '</div><div class="media-body">';
+                out += '<h4 class="media-heading">' + newsItem.title + '<br />';
+                out += '<small>' + date.getHours() + ':' + date.getMinutes() + ', ';
+                out += date.getDate() + '/' + date.getMonth()+1 + '</small></h4>';
                 out += '<p>' + newsItem.content + '</p>';
                 out += '<br /> <br />';
-                out += '</div>';
+                out += '</div></div></div>';
             });
 
             document.getElementById('loadNews').innerHTML = out;
