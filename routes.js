@@ -110,7 +110,7 @@ module.exports = function (app, passport) {
                     if (err) {
                         res.redirect('/?err');
                     }else{
-                        res.redirect('/?success');
+                        res.redirect('/?rightAnswer');
                     }
                 });
             }else{
@@ -170,7 +170,7 @@ module.exports = function (app, passport) {
         error += validate.isEmpty(req.body.newpass2);
 
         if(error || req.body.newpass1 != req.body.newpass2){
-            res.redirect('/profile/changepassword?failed');
+            res.redirect('/profile/changepassword?passMatchFailed');
         }else{
 
             Team.findOne({ 'local.username': req.user.local.username},
@@ -200,7 +200,7 @@ module.exports = function (app, passport) {
         error += !validate.isNumeric(req.body.level);
 
         if (error) {
-            res.redirect('/?wrongAnswer');
+            res.redirect('/admin/?newsEmpty');
         } else {
 
             var News = require('./models/news.js');

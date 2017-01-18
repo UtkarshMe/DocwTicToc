@@ -73,17 +73,16 @@
         <br />
         <div class="col-md-6 col-md-offset-3">
           <form class="form-signin" action="/login" method="post">
-            <h2 class="form-signin-heading">Please sign in or <a href="/signup">Sign Up</a></h2>
-            <label for="inputEmail" class="sr-only">Team Name</label>
-            <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Team Name" required autofocus>
-            <label for="inputPassword" class="sr-only">Secret Key</label>
-            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Secret Key" required>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="remember-me"> Don't forget me. Please (:
-              </label>
+            <div id="whole-form" class="form-group">
+              <h2 class="form-signin-heading">Please sign in or <a href="/signup">Sign Up</a></h2> <br />
+              <div class="alert alert-danger hidden" id="error-box" role="alert">Incorrect Team Name or Secret Key</div>
+              <label for="inputEmail" class="sr-only">Team Name</label>
+              <input type="text" id="inputEmail" name="username" class="form-control has-error" placeholder="Team Name" required autofocus>
+              <label for="inputPassword" class="sr-only">Secret Key</label>
+              <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Secret Key" required>
+              <br />
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Log me in</button>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Log me in</button>
           </form>
         </div>
       </div>
@@ -104,5 +103,12 @@
     <script src="/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var status = window.location.search;
+        if(status == '?failed'){
+            document.getElementById('whole-form').className += ' has-error';
+            document.getElementById('error-box').className = 'alert alert-danger';
+        }
+    </script>
   </body>
 </html>

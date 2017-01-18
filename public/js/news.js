@@ -19,6 +19,10 @@ function loadNews() {
                 var month = ["January", "February", "March", "April",
                     "May", "June", "July", "August", "September", "October",
                     "November", "December"];
+                var hours = date.getHours();
+                var ampm = hours > 12 ? 'pm' : 'am';
+                hours = hours > 12 ? hours - 12 : hours;
+                
 
 
                 out += '<div class="col-md-12">';
@@ -30,7 +34,7 @@ function loadNews() {
                 out += '<h4 class="media-heading">' + newsItem.title +'<br />';
                 out += '<small>';
                 out += date.getDate() + ' ' + month[date.getMonth()];
-                out += ' on ' + date.getHours() + ':' + date.getMinutes();
+                out += ' at ' + hours + ':' + date.getMinutes() + ampm;
                 out += '</small></h4>';
                 out += '<p>' + newsItem.content + '</p>';
                 out += '<br /> <br />';

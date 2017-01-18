@@ -88,7 +88,7 @@
               <div role="tabpanel" class= "tab-pane active" id="overview">
                 <div class="text-center">
                   <div class="hidden-sm hidden-xs">
-                      <br /> <br /> <br /> <br />
+                    <br /> <br /> <br /> <br />
                   </div>
                   <h1>Admin Panel <br /><small> Manage the event like a boss</small></h1><br />
                 </div>
@@ -135,17 +135,49 @@
       </div>
     </div>
 
+    <div class="modal fade" id="newsModal" tabindex="-1" role="dialog" aria-labelledby="newsModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="newsModalLabel">News Error</h4>
+          </div>
+          <div class="modal-body" id="newsModalContent">
+            
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!-- Bootstrap core JavaScript
-      ================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
-      <script src="/js/bootstrap.min.js"></script>
-      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      <script src="/js/ie10-viewport-bug-workaround.js"></script>
 
-      <!-- script for admin panel -->
-      <script type="text/javascript" charset="utf-8" src="/js/adminPanel.js"></script>
+    <!-- Bootstrap core JavaScript ========================================= -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- script for admin panel -->
+    <script type="text/javascript" charset="utf-8" src="/js/adminPanel.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      var status = window.location.search;
+      if(status == '?newsEmpty'){
+        document.getElementById('newsModalLabel').innerHTML = 'News update failed';
+        document.getElementById('newsModalContent').innerHTML = 'The news fields cannot be empty';
+
+        $('#newsModal').modal();
+      }else if(status == '?newsFailed'){
+        document.getElementById('newsModalLabel').innerHTML = 'News update failed';
+        document.getElementById('newsModalContent').innerHTML = 'There was some error with the connection';
+
+        $('#newsModal').modal();
+      }else if(status == '?newsSuccess'){
+        document.getElementById('newsModalLabel').innerHTML = 'News update successful';
+        document.getElementById('newsModalContent').innerHTML = 'The news was published';
+
+        $('#newsModal').modal();
+      }
+    </script>
   </body>
 </html>
