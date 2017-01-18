@@ -69,9 +69,6 @@
       <div class="row">
         <div class="col-sm-12 main">
           <ul class="nav nav-pills" role="tablist">
-            <li role="presentation" class="active">
-              <a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a>
-            </li>
             <li role="presentation">
               <a href="#users" aria-controls="users" role="tab" data-toggle="tab" onclick="loadDoc()">Users</a>
             </li>
@@ -88,11 +85,12 @@
         <div class="col-md-12">
           <div class="text-left">
             <div class="tab-content">
-              <div role="tabpanel" class="tab-pane fade in active" id="overview">
-                <!-- Overview tab content -->
-                <br /> <br /> <br />
+              <div role="tabpanel" class= "tab-pane active" id="overview">
                 <div class="text-center">
-                  <i class="fa fa-cog fa-spin fa-5x fa-fw" id="content"></i>  
+                  <div class="hidden-sm hidden-xs">
+                      <br /> <br /> <br /> <br />
+                  </div>
+                  <h1>Admin Panel <br /><small> Manage the event like a boss</small></h1><br />
                 </div>
               </div>
               <div role="tabpanel" class="tab-pane fade" id="users">
