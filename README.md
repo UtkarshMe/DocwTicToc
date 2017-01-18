@@ -20,6 +20,6 @@ The DoCW Tic Toc Website
   - [x] Leaderboard
   - [x] Login
   - [x] Register
-  - [ ] Admin Panel
+  - [x] Admin Panel
   - [x] News Bulletin
   - [ ] FB API for activity
