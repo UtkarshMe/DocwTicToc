@@ -6,6 +6,12 @@ module.exports = function (app, passport) {
 
     var appData = JSON.parse(fs.readFileSync('./config/appData.json'));
     
+    // Important for use on openshift
+    app.get('/health', function(req, res) {
+        res.status(200).send();
+    });
+    
+    
     // Handle GET requests
     
     app.get('/', function (req, res) {
