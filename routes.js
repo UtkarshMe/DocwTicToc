@@ -106,7 +106,7 @@ module.exports = function (app, passport) {
         } else {
             var questions = JSON.parse(fs.readFileSync('./config/questions.json'));
             var correctAnswer = questions[req.user.local.game.level].answer;
-            if (answer == correctAnswer) {
+            if (answer.toLowerCase() == correctAnswer.toLowerCase()) {
                 // Run query to increase level
                 var query = { 'local.username': req.user.local.username };
                 var update = { $set: { 'local.game.level': req.user.local.game.level + 1 } };
