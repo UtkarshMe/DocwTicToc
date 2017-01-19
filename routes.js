@@ -100,7 +100,6 @@ module.exports = function (app, passport) {
         // Validate data
         var answer = validate.trim(req.body.answer);
         var error = validate.isEmpty(answer);
-        error += validate.isAlphanumeric(answer) ? 0 : 1;
 
         if (error) {
             res.redirect('/?wrongAnswer');
@@ -134,14 +133,13 @@ module.exports = function (app, passport) {
         while(i < 4){
             req.body.member[i] = validate.trim(req.body.member[i]);
             error += validate.isEmpty(req.body.member[i]);
-            error += !validate.isAlphanumeric(req.body.member[i]);
             i++;
         }
         error += validate.isEmpty(req.body.phone);
 
 
         if(error){
-            res.redirect('/signup/step2?failed');
+            res.redirect('/signup/step2?formErr');
         }else{
 
             var i = 0;
