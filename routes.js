@@ -16,9 +16,13 @@ module.exports = function (app, passport) {
     
     app.get('/', function (req, res) {
         if (req.isAuthenticated()) {
-            var data = appData;
-            data.team = req.user;
-            res.render('index.ejs', data);
+            if (req.user.local.status == 1) {
+                var data = appData;
+                data.team = req.user;
+                res.render('index.ejs', data);
+            } else {
+                res.redirect('/signup/step2');
+            }
         }else{
             res.render('index_loggedout.ejs', appData);
         }
@@ -41,7 +45,7 @@ module.exports = function (app, passport) {
         res.render('signup_step2.ejs', data);
     });
 
-    app.get('/profile', isLoggedIn, function (req, res) {
+    app.get('/profile', isLoggedIn, reRoute, function (req, res) {
         if (req.user.local.username == "admin") {
             res.redirect('/admin');
         }else{
@@ -51,13 +55,14 @@ module.exports = function (app, passport) {
         }
     });
 
-    app.get('/profile/changepassword', isLoggedIn, function (req, res) {
+    app.get('/profile/changepassword', isLoggedIn, reRoute, function (req, res) {
         var data = appData;
         data.team = req.user;
         res.render('changepassword.ejs', data);
     });
 
     app.get('/logout', function (req, res) {
+        req.user = null;
         req.logout();
         res.redirect('/');
     });
@@ -75,14 +80,14 @@ module.exports = function (app, passport) {
         res.render('instructions.ejs', data);
     });
     
-    app.get('/news', isLoggedIn, function (req, res) {
+    app.get('/news', isLoggedIn, reRoute, function (req, res) {
         var data = appData;
         data.ins = JSON.parse(fs.readFileSync('./config/instructions.json'));
         res.render('news.ejs', data);
     });
 
 
-    app.get('/contact', isLoggedIn, function (req, res) {
+    app.get('/contact', isLoggedIn, reRoute, function (req, res) {
         var data = appData;
         data.ins = JSON.parse(fs.readFileSync('./config/instructions.json'));
         res.render('contact.ejs', data);
@@ -255,6 +260,22 @@ function isLoggedIn(req, res, next) {
     }
 
     res.redirect('/login?notAuth');
+}
+
+function reRoute(req, res, next){
+    switch(req.user.local.status){
+        case 0:
+            res.redirect('/signup/step2');
+            break;
+        case 1:
+            return next();
+            break;
+        case 2:
+            res.redirect('/logout');
+            break;
+        default:
+            console.log('ERROR: user status not defined');
+    }
 }
 
 function isLoggedOut(req, res, next) {
