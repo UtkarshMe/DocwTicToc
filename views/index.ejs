@@ -88,13 +88,13 @@
             </div>
 
             <div class="col-md-10 form-group" id="whole-form">
-              <input type="text" value="" name="answer" class="form-control" placeholder="Put your answer in me" autocomplete="off"/>
+              <input type="text" value="" name="answer" class="form-control" placeholder="Put your answer in me" autocomplete="off"/ id="answer-input" disabled>
               <div class="alert alert-danger hidden" id="error-box" role="alert">That's not the one I'm looking for. <br />
                 <span id="attempt-number">X</span> attempts left!
               </div>
             </div>
             <div class="col-md-2 form-group">
-              <input type="submit" name="submit" value="Send" class="btn btn-primary form-control" />
+              <input type="submit" name="submit" value="Send" id="game-submit" class="btn btn-primary form-control" />
             </div>
 
           </div>
@@ -144,6 +144,11 @@
         if(status == '?err'){
             var box = document.getElementById('error-box')
             box.innerHTML = 'The connection was lost. Please try again.';
+            box.className = 'alert alert-danger';
+        }
+        if(status == '?timeUp'){
+            var box = document.getElementById('error-box')
+            box.innerHTML = 'Your time is up! Use skip to proceed to next level.';
             box.className = 'alert alert-danger';
         }
     </script>

@@ -109,11 +109,26 @@ module.exports = function (app, passport) {
 
     app.post('/checkanswer', isLoggedIn, function(req, res){
         // Validate data
-        var answer = validate.trim(req.body.answer);
-        var error = validate.isEmpty(answer);
 
-        if (error) {
-            res.redirect('/?wrongAnswer');
+        var answer;
+        var error = 0;
+        if (req.body.answer) {
+            answer = validate.trim(req.body.answer);
+            error += validate.isEmpty(answer);
+        } else {
+            answer = "";
+            error++;
+        }
+
+        var game = JSON.parse(fs.readFileSync('./config/game.json'));
+        var timeLeft = new Date(game.time.start).valueOf() +
+            new Date(Number(game.time.initial)).valueOf() +
+            req.user.local.game.time -
+            Date.now();
+        
+        if (error || timeLeft <= 0) {
+            var redir = ( timeLeft <= 0 ) ? '/?timeUp' : '/?wrongAnswer';
+            res.redirect(redir);
         } else {
             var questions = JSON.parse(fs.readFileSync('./config/questions.json'));
             var correctAnswer = questions[req.user.local.game.level].answer;

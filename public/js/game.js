@@ -11,16 +11,16 @@ function loadQuestion() {
         Xhttp.send();
 };
 
-loadQuestion();
 
 var time;
 var zone = new Date().getTimezoneOffset() * 60000;
+var timeout = 0;
 function getTime() {
     var Xhttp = new XMLHttpRequest();
     Xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             time = JSON.parse(this.responseText);
-            time.left += zone;
+            document.getElementById('answer-input').removeAttribute("disabled");
             return time;
         }
     }
@@ -29,16 +29,25 @@ function getTime() {
 };
 
 function loadTime() {
-    if (time.left > zone) {
+    if (time.left >= 1000) {
         time.left -= (1000);
     } else {
-        time.left = zone;
+        // Timeout
+
+        timeout = 1;
+        document.getElementById('answer-input').setAttribute("placeholder", "Timeout! Use skip to continue");
+        document.getElementById('answer-input').setAttribute("disabled", "true");
+        document.getElementById('game-submit').setAttribute("disabled", "true");
+        time.left = 0;
     }
 
-    document.getElementById('time-left').innerHTML = new Date(time.left).getHours() + ":" +
-        new Date(time.left).getMinutes() + ":" +
-        new Date(time.left).getSeconds();
+    document.getElementById('time-left').innerHTML = new Date(time.left + zone).getHours() + ":" +
+        new Date(time.left + zone).getMinutes() + ":" +
+        new Date(time.left + zone).getSeconds();
 }
 
 time = getTime();
-setInterval(loadTime, 1000);
+if(!timeout)
+    setInterval(loadTime, 1000);
+
+loadQuestion();
