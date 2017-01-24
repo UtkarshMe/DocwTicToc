@@ -37,7 +37,7 @@ function loadTime() {
         timeout = 1;
         document.getElementById('answer-input').setAttribute("placeholder", "Timeout! Use skip to continue");
         document.getElementById('answer-input').setAttribute("disabled", "true");
-        document.getElementById('game-submit').setAttribute("disabled", "true");
+        document.getElementById('game-submit').className += " disabled";
         time.left = 0;
     }
 
