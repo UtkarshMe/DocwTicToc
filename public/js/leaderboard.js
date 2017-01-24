@@ -23,4 +23,4 @@ function loadLeaderboard() {
 };
 
 loadLeaderboard();
-setTimeout(loadLeaderboard, 3000);
+setTimeout(loadLeaderboard, 5000);

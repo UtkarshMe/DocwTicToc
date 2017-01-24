@@ -136,7 +136,14 @@ module.exports = function (app, passport) {
 
                 // Run query to increase level
                 var query = { 'local.username': req.user.local.username };
-                var update = { $set: { 'local.game.level': req.user.local.game.level + 1 } };
+                console.log(parseInt(timeLeft/10000));
+                var update = {
+                    $set: { 'local.game.level': req.user.local.game.level + 1 },
+                    $inc: {
+                        'local.game.time': questions[req.user.local.game.level].time * 60 * 1000,
+                        'local.game.score': parseInt(timeLeft / 10000)
+                    }
+                };
                 var options = { strict: false };
 
                 Team.update(query, update, options, function(err){

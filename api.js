@@ -35,7 +35,7 @@ module.exports = function(app, passport){
                         content.push(team.local);
                 });
                 content.sort(function(a, b){
-                    return a.game.score - b.game.score;
+                    return b.game.score - a.game.score;
                 });
                 res.send(JSON.stringify(content));
             }
@@ -78,6 +78,7 @@ module.exports = function(app, passport){
         time.start = new Date(game.time.start).valueOf();
         time.left = new Date(ms) - Date.now();
         time.elapsed = Date.now() - new Date(game.time.start);
+        time.user = req.user.local.game.time;
         res.send(time);
     });
     
