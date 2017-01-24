@@ -3,7 +3,12 @@ function loadQuestion() {
     Xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var question = JSON.parse(this.responseText);
-            var out = question;
+            var out;
+            if (question[0]) {
+                out = question;
+            } else {
+                out = "You have won! Report to the DoCW stall for further instructions";
+            }
             document.getElementById('question').innerHTML = out;
         }
     }
