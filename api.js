@@ -66,6 +66,20 @@ module.exports = function(app, passport){
             res.send(question);
         });
     });
+
+
+    app.get('/api/time', isLoggedIn, function(req, res){
+        var game = JSON.parse(fs.readFileSync('./config/game.json'));
+        var ms = new Date(game.time.start).valueOf() +
+            Number(game.time.initial) +
+            req.user.local.game.time;
+        var time = new Object();
+        time.initial = new Date(Number(game.time.initial)).valueOf();
+        time.start = new Date(game.time.start).valueOf();
+        time.left = new Date(ms) - Date.now();
+        time.elapsed = Date.now() - new Date(game.time.start);
+        res.send(time);
+    });
     
 
     app.post('/api/set/status/:status/:username', isAdmin, function(req, res){

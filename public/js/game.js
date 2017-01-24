@@ -1,14 +1,43 @@
 function loadQuestion() {
-    var leaderXhttp = new XMLHttpRequest();
-    leaderXhttp.onreadystatechange = function() {
+    var Xhttp = new XMLHttpRequest();
+    Xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var question = JSON.parse(this.responseText);
             var out = question;
             document.getElementById('question').innerHTML = out;
         }
     }
-        leaderXhttp.open("GET", "/api/question", true);
-        leaderXhttp.send();
+        Xhttp.open("GET", "/api/question", true);
+        Xhttp.send();
 };
 
 loadQuestion();
+
+var time;
+function getTime() {
+    var Xhttp = new XMLHttpRequest();
+    Xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            time = JSON.parse(this.responseText);
+            time.left += ( new Date().getTimezoneOffset() * 60000 );
+            return time;
+        }
+    }
+        Xhttp.open("GET", "/api/time", true);
+        Xhttp.send();
+};
+
+function loadTime() {
+    if (time.left > 0) {
+        time.left -= (1000);
+    } else {
+        time.left = new Date().getTimezoneOffset() * 60000;
+    }
+
+    document.getElementById('time-left').innerHTML = new Date(time.left).getHours() + ":" +
+        new Date(time.left).getMinutes() + ":" +
+        new Date(time.left).getSeconds();
+}
+
+time = getTime();
+setInterval(loadTime, 1000);
