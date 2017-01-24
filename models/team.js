@@ -14,7 +14,9 @@ var teamSchema = mongoose.Schema({
         {
             level: { type: Number, default: 1 },
             time: { type: Number, default: 0 },
-            score: { type: Number, default: 0 }
+            score: { type: Number, default: 0 },
+            chances: { type: Number, default: 3 },
+            lives: { type: Number, default: 5 }
         },
         status: { type: Number, default: 0 },
         last_read_news: { type: Date, default: Date.now }

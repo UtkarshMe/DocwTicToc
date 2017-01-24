@@ -2,7 +2,7 @@
     "time":
     {
         "_comment": "USE LOCAL TIME",
-        "start": "Jan 25, 2017 01:00:00",
+        "start": "Jan 25, 2017 02:00:00",
         "initial": "5400000",
         "deadline": "3000"
     }

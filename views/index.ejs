@@ -55,7 +55,7 @@
             <li><a href="/news"><i class="fa fa-newspaper-o"></i> News</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="/profile"><i class="fa fa-user-circle fa-lg"></i>&nbsp; <%= team.local.username %></a></li>
+            <li><a href="/profile"><i class="fa fa-user-circle fa-lg"></i>&nbsp; <%= team.local.username %></a></li>
             <li>
               <form action="/logout" method="get" class="navbar-form navbar-right">&nbsp;
                 <button type="submit" class="btn btn-success"><i class="fa fa-sign-out"></i> Sign out</button>
@@ -73,37 +73,50 @@
         <br /> <br />
       </div>
       <div class="row">
-        <form action="/checkAnswer" method="post" accept-charset="utf-8">
-          <div class="col-md-8">
-            <div class="col-md-7">
-                <h1>Level <%= team.local.game.level %> <br />
-                    <small>Time till blast: <span class="text-danger" id="time-left"></span></small>
-                </h1>
+        <div class="col-md-8">
+          <div class="col-md-7">
+            <h1>Level <%= team.local.game.level %> <br />
+              <small>Time till blast: <span class="text-danger" id="time-left"></span></small>
+            </h1>
+            <h4>
+              <form action="/skip" method="post" class="form-inline" accept-charset="utf-8">
+                <div class="form-group">
+                  Tries: <span class="text-success"> <%= team.local.game.chances %> </span> &nbsp;
+                </div>
+                <div class="form-group">
+                  Lives: <span class="text-success"> <%= team.local.game.lives %> </span> &nbsp;
+                </div>
+                <div class="form-group">
+                  <button type="submit" name="submit" value="Skip" id="skip" class="btn btn-default" >Skip</button>
+                </div>
+              </form>
+            </h4>
             <br />
+          </div>
+          <div class="col-md-12">
+            <div id="question" class="form-group">
+              <h3><i class="fa fa-cog fa-spin fa-fw"></i> Loading...</h3>
             </div>
-            <div class="col-md-12">
-              <div id="question" class="form-group">
-                <h3><i class="fa fa-cog fa-spin fa-fw"></i> Loading...</h3>
-              </div>
-            </div>
+          </div>
 
+          <form action="/checkAnswer" method="post" accept-charset="utf-8">
             <div class="col-md-10 form-group" id="whole-form">
               <input type="text" value="" name="answer" class="form-control" placeholder="Put your answer in me" autocomplete="off"/ id="answer-input" disabled>
               <div class="alert alert-danger hidden" id="error-box" role="alert">That's not the one I'm looking for. <br />
-                <span id="attempt-number">X</span> attempts left!
+                <span id="attempt-number"><%= team.local.game.chances %></span> attempts left!
               </div>
             </div>
             <div class="col-md-2 form-group">
               <input type="submit" name="submit" value="Send" id="game-submit" class="btn btn-primary form-control" />
             </div>
+          </form>
 
-          </div>
-        </form>
+        </div>
         <div class="col-md-4">
-            <br />
+          <br />
           <div class="panel panel-default">
             <div class="panel-heading text-center">
-                <h4>Leaderboard</h4>
+              <h4>Leaderboard</h4>
             </div>
             <table id="leaderboard" class="table text-center">
             </table>
@@ -118,39 +131,44 @@
         <p class="text-muted">&copy; <%= app.company %></p>
       </div>
     </footer>
-    
+
     <script type="text/javascript" charset="utf-8" src="/js/leaderboard.js"></script>
     <script type="text/javascript" charset="utf-8" src="/js/game.js"></script>
 
     <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/js/ie10-viewport-bug-workaround.js"></script>
-    <script type="text/javascript" charset="utf-8">
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+      <script src="/js/bootstrap.min.js"></script>
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <script src="/js/ie10-viewport-bug-workaround.js"></script>
+      <script type="text/javascript" charset="utf-8">
         var status = window.location.search;
         if(status == '?wrongAnswer'){
-            document.getElementById('whole-form').className += ' has-error';
-            document.getElementById('error-box').className = 'alert alert-danger';
+          document.getElementById('whole-form').className += ' has-error';
+          document.getElementById('error-box').className = 'alert alert-danger';
         }
         if(status == '?rightAnswer'){
-            var box = document.getElementById('error-box')
+          var box = document.getElementById('error-box')
             box.innerHTML = 'Good work, amigo!';
-            box.className = 'alert alert-success';
+          box.className = 'alert alert-success';
         }
         if(status == '?err'){
-            var box = document.getElementById('error-box')
+          var box = document.getElementById('error-box')
             box.innerHTML = 'The connection was lost. Please try again.';
-            box.className = 'alert alert-danger';
+          box.className = 'alert alert-danger';
         }
         if(status == '?timeUp'){
-            var box = document.getElementById('error-box')
+          var box = document.getElementById('error-box')
             box.innerHTML = 'Your time is up! Use skip to proceed to next level.';
-            box.className = 'alert alert-danger';
+          box.className = 'alert alert-danger';
         }
-    </script>
+        if(status == '?noAttempts'){
+          var box = document.getElementById('error-box')
+            box.innerHTML = 'No attempts left! Skip to proceed';
+          box.className = 'alert alert-danger';
+        }
+      </script>
   </body>
 </html>

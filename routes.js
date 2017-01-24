@@ -107,6 +107,32 @@ module.exports = function (app, passport) {
         failureRedirect: '/signup?failed',
     }));
 
+    app.post('/skip', isLoggedIn, function(req, res){
+
+        // Run query to increase level
+        var query = { 'local.username': req.user.local.username };
+        var update = {
+            $inc: {
+                'local.game.lives': -1
+            },
+            $set: {
+                'local.game.level': req.user.local.game.level + 1,
+                'local.game.chances': 3
+            }
+        };
+        var options = { strict: false };
+
+        Team.update(query, update, options, function(err){
+            if (err) {
+                res.redirect('/?err');
+            }else{
+                res.redirect('/?skipped');
+            }
+        });
+        
+    });
+    
+
     app.post('/checkanswer', isLoggedIn, function(req, res){
         // Validate data
 
@@ -132,13 +158,15 @@ module.exports = function (app, passport) {
         } else {
             var questions = JSON.parse(fs.readFileSync('./config/questions.json'));
             var correctAnswer = questions[req.user.local.game.level].answer;
-            if (answer.toLowerCase() == correctAnswer.toLowerCase()) {
+            if (req.user.local.game.chances >= 0 && answer.toLowerCase() == correctAnswer.toLowerCase()) {
 
                 // Run query to increase level
                 var query = { 'local.username': req.user.local.username };
-                console.log(parseInt(timeLeft/10000));
                 var update = {
-                    $set: { 'local.game.level': req.user.local.game.level + 1 },
+                    $set: {
+                        'local.game.level': req.user.local.game.level + 1,
+                        'local.game.chances': 3
+                    },
                     $inc: {
                         'local.game.time': questions[req.user.local.game.level].time * 60 * 1000,
                         'local.game.score': parseInt(timeLeft / 10000)
@@ -154,7 +182,19 @@ module.exports = function (app, passport) {
                     }
                 });
             }else{
-                res.redirect('/?wrongAnswer');
+
+                // Run query to increase level
+                var query = { 'local.username': req.user.local.username };
+                var update = { $inc: { 'local.game.chances': ( req.user.local.game.chances > 0) ? -1 : 0 } };
+                var options = { strict: false };
+
+                Team.update(query, update, options, function(err){
+                    if (err) {
+                        res.redirect('/?err');
+                    }else{
+                        res.redirect('/?noAttempts');
+                    }
+                });
             }
         }
     });
