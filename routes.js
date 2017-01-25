@@ -157,6 +157,10 @@ module.exports = function (app, passport) {
             res.redirect(redir);
         } else {
             var questions = JSON.parse(fs.readFileSync('./config/questions.json'));
+            if (!questions[req.user.local.game.level]) {
+                console.log(questions[req.user.local.game.level]);
+                res.redirect('/?gameOver');
+            }
             var correctAnswer = questions[req.user.local.game.level].answer;
             if (req.user.local.game.chances >= 0 && answer.toLowerCase() == correctAnswer.toLowerCase()) {
 
@@ -192,7 +196,11 @@ module.exports = function (app, passport) {
                     if (err) {
                         res.redirect('/?err');
                     }else{
-                        res.redirect('/?noAttempts');
+                        if (req.user.local.game.chances >= 0) {
+                            res.redirect('/?wrongAnswer');
+                        } else {
+                            res.redirect('/?noAttempts');
+                        }
                     }
                 });
             }
