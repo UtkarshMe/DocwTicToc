@@ -40,7 +40,7 @@ function loadTime() {
         // Timeout
 
         timeout = 1;
-        document.getElementById('answer-input').setAttribute("placeholder", "Timeout! You have been eliminated");
+        document.getElementById('answer-input').setAttribute("placeholder", "Timeout! Use skip to continue");
         document.getElementById('answer-input').setAttribute("disabled", "true");
         document.getElementById('game-submit').className += " disabled";
         time.left = 0;

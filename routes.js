@@ -100,7 +100,6 @@ module.exports = function (app, passport) {
     });
 
 
-
     // Handle POST requests
 
     app.post('/login', isLoggedOut, passport.authenticate('local-login', {
