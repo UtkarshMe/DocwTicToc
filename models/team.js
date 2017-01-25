@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
-
+var bcrypt = require('bcrypt-nodejs');
 
 var teamSchema = mongoose.Schema({
 

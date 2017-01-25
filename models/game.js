@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
-
 
 var gameSchema = mongoose.Schema({
 
@@ -13,12 +11,5 @@ var gameSchema = mongoose.Schema({
     }
 
 });
-
-
-userSchema.methods.correctAnswer = function (answer) {
-    // take level and answer and compare
-    //return bcrypt.compareSync(password, this.local.password);
-}
-
 
 module.exports = mongoose.model('Game', gameSchema);
