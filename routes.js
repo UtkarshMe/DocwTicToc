@@ -94,6 +94,12 @@ module.exports = function (app, passport) {
     });
 
 
+    app.get('/404', function (req, res) {
+        res.status(404);
+        res.render('notfound.ejs', appData);
+    });
+
+
 
     // Handle POST requests
 
@@ -111,23 +117,34 @@ module.exports = function (app, passport) {
 
         // Run query to increase level
         var query = { 'local.username': req.user.local.username };
-        var update = {
-            $inc: {
-                'local.game.lives': -1
-            },
-            $set: {
-                'local.game.level': req.user.local.game.level + 1,
-                'local.game.chances': 3
-            }
-        };
-        var options = { strict: false };
 
-        Team.update(query, update, options, function(err){
+        Team.findOne(query, function(err, team){
             if (err) {
                 res.redirect('/?err');
-            }else{
-                res.redirect('/?skipped');
             }
+
+            if (team.local.lives <= 0) {
+                res.redirect('/?noSkip');
+            }
+            var update = {
+                $inc: {
+                    'local.game.lives': -1
+                },
+                $set: {
+                    'local.game.level': req.user.local.game.level + 1,
+                    'local.game.chances': 3
+                }
+            };
+            var options = { strict: false };
+
+            Team.update(query, update, options, function(err){
+                if (err) {
+                    res.redirect('/?err');
+                }else{
+                    req.user.local.lives--;
+                    res.redirect('/?skipped');
+                }
+            });
         });
         
     });

@@ -8,9 +8,9 @@ function loadLeaderboard() {
             var count = 1;
             teams.forEach(function(team){
                 out += '<tr>';
-                out += '<td>#' + count++ + '</td>';
-                out += '<td>' + team.username + '</td>';
-                out += '<td>' + team.game.score + '</td>';
+                out += '<td class="text-center">#' + count++ + '</td>';
+                out += '<td class="text-left text-wrap" style="overflow:hidden;text-overflow:ellipses">' + team.username + '</td>';
+                out += '<td class="text-right">' + team.game.score + '</td>';
                 out += '</tr>';
             });
             out += '</tbody>';

@@ -55,7 +55,9 @@ require('./api.js')(app, passport);
 
 // Use public directory for static files
 app.use(express.static(__dirname + '/public'));
-
+app.get('*', function (req, res) {
+    res.redirect('/404');
+});
 
 // Listen to app
 app.listen(config.port, config.host);
