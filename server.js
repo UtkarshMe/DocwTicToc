@@ -45,9 +45,7 @@ mongoose.Promise = global.Promise;
 
 if (env.OPENSHIFT_MONGODB_DB_HOST) {
     // For use on openshift
-    mongoose.connect("mongodb://"+config.db.username+":"+config.db.password+"@"+
-        env.OPENSHIFT_MONGODB_DB_HOST || config.db.host +":"+
-        env.OPENSHIFT_MONGODB_DB_PORT || config.db.port +"/"+config.db.database);
+    mongoose.connect("mongodb://"+config.db.username+":"+config.db.password+"@"+env.OPENSHIFT_MONGODB_DB_HOST || config.db.host +":"+env.OPENSHIFT_MONGODB_DB_PORT || config.db.port +"/"+config.db.database);
 
 } else {
     // For use locally
