@@ -107,7 +107,7 @@ module.exports = function (app, passport) {
         failureRedirect: '/login?failed',
     }));
 
-    app.post('/signup', isLoggedOut, passport.authenticate('local-signup', {
+    app.post('/signup', isLoggedOut, eventNotStarted, passport.authenticate('local-signup', {
         successRedirect: '/signup/step2',
         failureRedirect: '/signup?failed',
     }));
@@ -387,4 +387,19 @@ function inStepTwo(req, res, next) {
     }
 
     res.redirect('/profile');
+}
+
+function eventNotStarted(req, res, next) {
+    var game = JSON.parse(fs.readFileSync('./config/game.json'));
+    console.log(Date.now());
+    console.log(new Date(game.time.start).valueOf());
+    console.log(game.time.deadline);
+    console.log(Date.now() - new Date(game.time.start).valueOf());
+    console.log(Date.now() <= new Date(game.time.start).valueOf());
+
+    if(Date.now() <= new Date(game.time.start).valueOf() + Number(game.time.deadline)){
+        return next();
+    }
+
+    res.redirect('/signup?timeup');
 }

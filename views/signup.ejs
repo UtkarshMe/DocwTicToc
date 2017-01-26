@@ -94,9 +94,14 @@
     <script src="/js/ie10-viewport-bug-workaround.js"></script>
     <script type="text/javascript" charset="utf-8">
         var status = window.location.search;
+        errorBox = document.getElementById('error-box');
         if(status == '?failed'){
             document.getElementById('whole-form').className += ' has-error';
-            document.getElementById('error-box').className = 'alert alert-danger';
+            errorBox.className = 'alert alert-danger';
+        }
+        if(status == '?timeup'){
+            errorBox.className = 'alert alert-danger';
+            errorBox.innerHTML = 'You cannot register now. The time is past it.';
         }
     </script>
   </body>
