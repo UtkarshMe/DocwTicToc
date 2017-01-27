@@ -24,17 +24,20 @@ module.exports = function (app, passport) {
                 res.redirect('/signup/step2');
             }
         }else{
+            res.setHeader('content-type', 'text/html');
             res.render('index_loggedout.ejs', appData);
         }
     });
 
     app.get('/login', isLoggedOut, function (req, res) {
         appData.message = "Put a message in me";
+        res.setHeader('content-type', 'text/html');
         res.render('login.ejs', appData);
     });
 
     app.get('/signup', isLoggedOut, function (req, res) {
         appData.message = "Put a message in me";
+        res.setHeader('content-type', 'text/html');
         res.render('signup.ejs', appData);
     });
 
@@ -42,6 +45,7 @@ module.exports = function (app, passport) {
         appData.message = "Put a message in me";
         var data = appData;
         data.team = req.user;
+        res.setHeader('content-type', 'text/html');
         res.render('signup_step2.ejs', data);
     });
 
@@ -51,6 +55,7 @@ module.exports = function (app, passport) {
         }else{
             var data = appData;
             data.team = req.user;
+            res.setHeader('content-type', 'text/html');
             res.render('profile.ejs', data);
         }
     });
@@ -58,6 +63,7 @@ module.exports = function (app, passport) {
     app.get('/profile/changepassword', isLoggedIn, reRoute, function (req, res) {
         var data = appData;
         data.team = req.user;
+        res.setHeader('content-type', 'text/html');
         res.render('changepassword.ejs', data);
     });
 
@@ -71,18 +77,21 @@ module.exports = function (app, passport) {
         var data = appData;
         data.team = req.user;
         data.content = "this";
+        res.setHeader('content-type', 'text/html');
         res.render('admin.ejs', data);
     });
 
     app.get('/instructions', function (req, res) {
         var data = appData;
         data.ins = JSON.parse(fs.readFileSync('./config/instructions.json'));
+        res.setHeader('content-type', 'text/html');
         res.render('instructions.ejs', data);
     });
     
     app.get('/news', isLoggedIn, reRoute, function (req, res) {
         var data = appData;
         data.ins = JSON.parse(fs.readFileSync('./config/instructions.json'));
+        res.setHeader('content-type', 'text/html');
         res.render('news.ejs', data);
     });
 
@@ -90,12 +99,14 @@ module.exports = function (app, passport) {
     app.get('/contact', isLoggedIn, reRoute, function (req, res) {
         var data = appData;
         data.ins = JSON.parse(fs.readFileSync('./config/instructions.json'));
+        res.setHeader('content-type', 'text/html');
         res.render('contact.ejs', data);
     });
 
 
     app.get('/404', function (req, res) {
         res.status(404);
+        res.setHeader('content-type', 'text/html');
         res.render('notfound.ejs', appData);
     });
 

@@ -13,6 +13,7 @@ module.exports = function(app, passport){
                 teams.forEach(function (team) {
                     content.push(team.local);
                 });
+                res.setHeader('content-type', 'application/json');
                 res.send(JSON.stringify(content));
             }
         });
@@ -37,6 +38,7 @@ module.exports = function(app, passport){
                 content.sort(function(a, b){
                     return b.game.score - a.game.score;
                 });
+                res.setHeader('content-type', 'application/json');
                 res.send(JSON.stringify(content));
             }
         });
@@ -50,6 +52,7 @@ module.exports = function(app, passport){
         if (Game[req.user.local.game.level]) {
             content.push(Game[req.user.local.game.level].question);
         }
+        res.setHeader('content-type', 'application/json');
         res.send(JSON.stringify(content));
     });
 
@@ -57,6 +60,7 @@ module.exports = function(app, passport){
     app.get('/api/news', isLoggedIn, function(req, res){
         var News = require('./models/news.js');
         News.find({}).sort('-updated').exec(function (err, news){
+            res.setHeader('content-type', 'application/json');
             res.send(news);
         });
     });
@@ -65,6 +69,7 @@ module.exports = function(app, passport){
     app.get('/api/questions', isAdmin, function(req, res){
         var Question = require('./models/question.js');
         Question.find({}).sort('-updated').exec(function (err, question){
+            res.setHeader('content-type', 'application/json');
             res.send(question);
         });
     });
@@ -81,6 +86,8 @@ module.exports = function(app, passport){
         time.left = new Date(ms) - Date.now();
         time.elapsed = Date.now() - new Date(game.time.start);
         time.user = req.user.local.game.time;
+        
+        res.setHeader('content-type', 'application/json');
         res.send(time);
     });
     

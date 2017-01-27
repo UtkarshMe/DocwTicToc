@@ -35,7 +35,7 @@ app.use(session(
 
 
 //Use morgan for logging
-app.use(morgan('tiny'));
+app.use(morgan('dev'));
 
 
 // Connect database
