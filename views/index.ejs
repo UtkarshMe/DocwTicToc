@@ -109,7 +109,7 @@
             <div class="row">
               <form action="/checkAnswer" method="post" accept-charset="utf-8">
                 <div class="col-md-10 form-group" id="whole-form">
-                  <input type="text" value="" name="answer" class="form-control" placeholder="Put your answer in me" autocomplete="off"/ id="answer-input" disabled>
+                  <input type="text" value="" name="answer" class="form-control" placeholder="Put your answer in me" autocomplete="off"/ id="answer-input" disabled required>
                   <div class="alert alert-danger hidden" id="error-box" role="alert">That's not the one I'm looking for. <br />
                     <span id="attempt-number"><%= team.local.game.chances %></span> attempts left!
                   </div>

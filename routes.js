@@ -239,7 +239,7 @@ module.exports = function (app, passport) {
         // Validate data
         var i = 0;
         var error = 0;
-        while(i < 4){
+        while(i < 3){
             req.body.member[i] = validate.trim(req.body.member[i]);
             error += validate.isEmpty(req.body.member[i]);
             i++;
@@ -253,7 +253,7 @@ module.exports = function (app, passport) {
 
             var i = 0;
             var members = [];
-            while(i < 4){
+            while(req.body.member[i]){
                 members.push(req.body.member[i++]);
             }
 

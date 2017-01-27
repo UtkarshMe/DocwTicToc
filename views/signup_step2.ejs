@@ -65,9 +65,10 @@
           <form class="form-signin" action="/signup/step2" method="post">
             <h2 class="form-signin-heading">Just one more step...</h2>
 
-            <% var i; for (i = 1; i < 5; i++){ %>
+            <% var i; for (i = 1; i < 4; i++){ %>
             <input type="text" name="member[<%= i %>]" class="form-control" placeholder="Member <%= i %> name" required autofocus>
             <% } %>
+            <input type="text" name="member[<%= i %>]" class="form-control" placeholder="Leave blank for a team of 3" autofocus>
             <br />
 
             <input type="text" name="phone" class="form-control" placeholder="Phone number" required><br />
