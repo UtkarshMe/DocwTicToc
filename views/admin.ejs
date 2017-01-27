@@ -79,6 +79,9 @@
             <li role="presentation">
               <a href="#news" aria-controls="news" role="tab" data-toggle="tab">News</a>
             </li>
+            <li role="presentation">
+              <a href="#desperate" aria-controls="desperate" role="tab" data-toggle="tab">Desperate Measures</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -131,6 +134,22 @@
                       </div>
                     </form>
                   </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="desperate">
+                <div class="text-left">
+                  <h1>Desperate Measures <small>Desperate times call for desperate measures</small></h1><br />
+                  <br />
+                  <p class="form-inline">
+                    <div class="form-group">
+                      <form action="/api/delete/all/users" method="post">
+                        <button class="btn btn-danger" type="submit">Delete All Users including admin</button>
+                      </form> <br />
+                      <form action="/api/delete/all/news" method="post">
+                        <button class="btn btn-danger" type="submit">Delete All News</button>
+                      </form>
+                    </div>
+                  </p>
                 </div>
               </div>
             </div>

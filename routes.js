@@ -185,7 +185,6 @@ module.exports = function (app, passport) {
         } else {
             var questions = JSON.parse(fs.readFileSync('./config/questions.json'));
             if (!questions[req.user.local.game.level]) {
-                console.log(questions[req.user.local.game.level]);
                 res.redirect('/?gameOver');
             }
             var correctAnswer = questions[req.user.local.game.level].answer;
@@ -214,7 +213,7 @@ module.exports = function (app, passport) {
                 });
             }else{
 
-                // Run query to increase level
+                // Reduce chances
                 var query = { 'local.username': req.user.local.username };
                 var update = { $inc: { 'local.game.chances': ( req.user.local.game.chances > 0) ? -1 : 0 } };
                 var options = { strict: false };
@@ -373,6 +372,7 @@ function reRoute(req, res, next){
             break;
         default:
             console.log('ERROR: user status not defined');
+            res.redirect('/logout');
     }
 }
 
@@ -402,11 +402,6 @@ function inStepTwo(req, res, next) {
 
 function eventNotStarted(req, res, next) {
     var game = JSON.parse(fs.readFileSync('./config/game.json'));
-    console.log(Date.now());
-    console.log(new Date(game.time.start).valueOf());
-    console.log(game.time.deadline);
-    console.log(Date.now() - new Date(game.time.start).valueOf());
-    console.log(Date.now() <= new Date(game.time.start).valueOf());
 
     if(Date.now() <= new Date(game.time.start).valueOf() + Number(game.time.deadline)){
         return next();

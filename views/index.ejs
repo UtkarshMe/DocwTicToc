@@ -85,15 +85,8 @@
                   Tries: <span class="text-success"> <%= team.local.game.chances %> </span> &nbsp;
                 </div>
                 <div class="form-group">
-                  Lives: &nbsp;
-                  <span class="text-danger">
-                    <% var i = team.local.game.lives; while(i-- > 0){ %>
-                    <i class="fa fa-heart fa-lg"></i>
-                    <% }; i = 5 - team.local.game.lives; while(i-- > 0){ %>
-                    <i class="fa fa-heart-o fa-lg"></i>
-                    <% } %>
-                    <%= team.local.game.lives %>
-                  </span> &nbsp; &nbsp;
+                  Skips:
+                  <span class="text-primary"> <%= team.local.game.lives %> </span> &nbsp; &nbsp;
                 </div>
                 <div class="form-group">
                   <button type="submit" name="submit" value="Skip" id="skip" class="btn btn-default" >Skip</button>

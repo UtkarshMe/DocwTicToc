@@ -107,6 +107,24 @@ module.exports = function(app, passport){
             }
         });
     });
+
+    app.post('/api/delete/all/:what', isAdmin, function(req, res){
+        switch (req.params.what){
+            case 'users':
+                Teams.remove({}, function(){
+                    res.send('All deleted');
+                });
+                break;
+            case 'news':
+                var News = require('./models/news.js');
+                News.remove({}, function(){
+                    res.send('All deleted');
+                });
+                break;
+            default:
+                res.send('Wrong options');
+        }
+    });
 }
 
 
