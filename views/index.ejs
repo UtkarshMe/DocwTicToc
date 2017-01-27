@@ -73,6 +73,7 @@
         <br /> <br />
       </div>
       <div class="row">
+        <% if (started == 1) { %>
         <div class="col-md-8">
           <div class="col-md-7">
             <h1>Level <%= team.local.game.level %> <br />
@@ -134,6 +135,20 @@
             </div>
           </div>
         </div>
+        <% } else { %>
+
+        <div class="header text-center">
+          <h1>The event will be starting on
+            <span class="text-primary">
+              <%= new Date(game.time.start).getDate(); %>th
+            </span>
+            at
+            <span class="text-primary">
+             <%= new Date(game.time.start).getHours(); %>:<%= new Date(game.time.start).getMinutes(); %>
+            </span>
+          </h1>
+        </div>
+        <% } %>
       </div>
     </div> <!-- /container -->
     <br /> <br />

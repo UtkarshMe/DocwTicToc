@@ -19,6 +19,12 @@ module.exports = function (app, passport) {
             if (req.user.local.status == 1) {
                 var data = appData;
                 data.team = req.user;
+
+                var game = JSON.parse(fs.readFileSync('./config/game.json'));
+                data.game = game;
+                data.started = (Date.now() > new Date(game.time.start).valueOf()) ? 1 : 0;
+                
+                res.setHeader('content-type', 'text/html');
                 res.render('index.ejs', data);
             } else {
                 res.redirect('/signup/step2');
@@ -128,25 +134,20 @@ module.exports = function (app, passport) {
         // Run query to increase level
         var query = { 'local.username': req.user.local.username };
 
-        Team.findOne(query, function(err, team){
-            if (err) {
-                res.redirect('/?err');
+        var update = {
+            $inc: {
+                'local.game.lives': -1
+            },
+            $set: {
+                'local.game.level': req.user.local.game.level + 1,
+                'local.game.chances': 3
             }
+        };
+        var options = { strict: false };
 
-            if (team.local.lives <= 0) {
-                res.redirect('/?noSkip');
-            }
-            var update = {
-                $inc: {
-                    'local.game.lives': -1
-                },
-                $set: {
-                    'local.game.level': req.user.local.game.level + 1,
-                    'local.game.chances': 3
-                }
-            };
-            var options = { strict: false };
-
+        if (req.user.local.game.lives <= 0) {
+            res.redirect('/?noSkip');
+        }else{
             Team.update(query, update, options, function(err){
                 if (err) {
                     res.redirect('/?err');
@@ -155,8 +156,7 @@ module.exports = function (app, passport) {
                     res.redirect('/?skipped');
                 }
             });
-        });
-        
+        }
     });
     
 
