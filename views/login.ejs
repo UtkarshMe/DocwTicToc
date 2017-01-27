@@ -12,13 +12,14 @@
     <title><%= app.title %> : Login</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/sticky-footer.css" type="text/css" media="screen" title="no title" charset="">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -29,7 +30,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <script src="https://use.fontawesome.com/7b9a245bf3.js"></script>
     <link rel="stylesheet" href="https://bootswatch.com/<%= app.theme %>/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
   </head>
 
@@ -75,21 +76,22 @@
           </form>
         </div>
       </div>
-
-      <br /> <br />
-      <hr>
-      <footer>
-        <p>&copy; <%= app.company %></p>
-      </footer>
     </div> <!-- /container -->
 
+    <br /> <br />
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">&copy; <%= app.company %></p>
+      </div>
+    </footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/js/ie10-viewport-bug-workaround.js"></script>
     <script type="text/javascript" charset="utf-8">
