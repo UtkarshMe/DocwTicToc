@@ -141,14 +141,23 @@
                   <h1>Desperate Measures <small>Desperate times call for desperate measures</small></h1><br />
                   <br />
                   <p class="form-inline">
-                    <div class="form-group">
+                    <ul class="list-inline">
+                      <li>
                       <form action="/api/delete/all/users" method="post">
                         <button class="btn btn-danger" type="submit">Delete All Users including admin</button>
-                      </form> <br />
-                      <form action="/api/delete/all/news" method="post">
-                        <button class="btn btn-danger" type="submit">Delete All News</button>
                       </form>
-                    </div>
+                      </li>
+                      <li>
+                        <form action="/api/delete/all/news" method="post">
+                          <button class="btn btn-warning" type="submit">Delete All News</button>
+                        </form>
+                      </li>
+                      <li>
+                        <form action="/api/delete/all/questions" method="post">
+                          <button class="btn btn-primary" type="submit">Delete All Messages</button>
+                        </form>
+                      </li>
+                    </ul>
                   </p>
                 </div>
               </div>

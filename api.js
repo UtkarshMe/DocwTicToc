@@ -121,6 +121,12 @@ module.exports = function(app, passport){
                     res.send('All deleted');
                 });
                 break;
+            case 'questions':
+                var Questions = require('./models/question.js');
+                Questions.remove({}, function(){
+                    res.send('All deleted');
+                });
+                break;
             default:
                 res.send('Wrong options');
         }
