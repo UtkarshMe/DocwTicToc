@@ -4,9 +4,9 @@
         "heading": "Objective",
         "points":
         {
-            "0": "Get stuff done",
-            "1": "Get it done as fast as possible",
-            "2": "Success is yours"
+            "0": "The bomb has been planted",
+            "1": "You have to stop it from detonating",
+            "2": "Stop the time from running out"
         }
     },
     "1":
@@ -14,20 +14,21 @@
         "heading": "How to",
         "points":
         {
-            "0": "Don't ask me",
-            "1": "I can't tell you",
-            "2": "I really don't know",
-            "3": "Why do you keep asking me",
-            "4": "Can't help you there bro"
+            "0": "You are one and half an hour away from the time running out",
+            "1": "Answering each question gives you a specified amount of time on the clock",
+            "2": "The faster you answer, the more points you get ie. the score for each question is proportional to the time left."
         }
     },
     "2":
     {
-        "heading": "Why should you do it",
+        "heading": "Skips and Tries",
         "points":
         {
-            "0": "Because I told you so",
-            "1": "Get it done as fast as possible"
+            "0": "You are given 3 tries for each question",
+            "1": "You are also given 5 skips till the end of the game",
+            "2": "Skipping any question won't give you the score or points for that question",
+            "3": "If you exaust the number of tries, then you'll have to skip",
+            "4": "There is no penalty for skip or the number of tries"
         }
     },
     "3":
@@ -35,20 +36,28 @@
         "heading": "Help",
         "points":
         {
-            "0": "Use message box for asking",
-            "1": "All doubts get cleared there",
-            "2": "Hue hue hue"
+            "0": "Use 'Ask a Question' box for asking any doubts about the game",
+            "1": "If the question is worth answering (lol), it'll be released as a news item",
+            "2": "If you are impatient, you can always come to the DoCW stall on Day 0",
+            "3": "Help will always be given at BITS to those who need it ie, there will be frequent News releases as and when needed"
         }
     },
     "4":
     {
+        "heading": "Game end",
+        "points":
+        {
+            "0": "If all the questions are finished report to the DoCW stall and notify us."
+        }
+    },
+    "5":
+    {
         "heading": "Term and Conditions",
         "points":
         {
-            "0": "DoCW can change rules anytime",
-            "1": "We can disqualify anyone",
-            "2": "We can add new levels anytime",
-            "3": "Basically, we're gods"
+            "0": "The rules can be changed anytime during the game. Any change will be reflected in the News",
+            "1": "DoCW holds the right to disqualify any team if found to be using illegal means",
+            "2": "By registering you are agreeing to the non-existant terms and conditions"
         }
     }
 }
