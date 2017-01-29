@@ -16,7 +16,8 @@
         {
             "0": "You are one and half an hour away from the time running out",
             "1": "Answering each question gives you a specified amount of time on the clock",
-            "2": "The faster you answer, the more points you get ie. the score for each question is proportional to the time left."
+            "2": "The faster you answer, the more points you get ie. the score for each question is proportional to the time left.",
+            "3": "The answer must be given in words. eg: if answer is '2', write 'two'"
         }
     },
     "2":
