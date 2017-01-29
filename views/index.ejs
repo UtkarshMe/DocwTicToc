@@ -128,16 +128,17 @@
             </div>
           </div>
         </div>
+        <script type="text/javascript" charset="utf-8" src="/js/leaderboard.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/game.js"></script>
         <% } else { %>
 
         <div class="header text-center">
           <h1>The event will be starting on
             <span class="text-primary">
-              <%= new Date(game.time.start).getDate(); %>th
+              <span id="date"></span>nd
             </span>
             at
-            <span class="text-primary">
-             <%= new Date(game.time.start).getHours(); %>:<%= new Date(game.time.start).getMinutes(); %>
+            <span class="text-primary" id="time">
             </span>
           </h1>
         </div>
@@ -152,8 +153,6 @@
       </div>
     </footer>
 
-    <script type="text/javascript" charset="utf-8" src="/js/leaderboard.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/js/game.js"></script>
 
     <!-- Bootstrap core JavaScript
       ================================================== -->
@@ -192,6 +191,11 @@
           box.innerHTML = 'No attempts left! Skip to proceed';
           box.className = 'alert alert-danger';
         }
+      </script>
+      <script type="text/javascript" charset="utf-8">
+        var milliS = new Date("<%= game.time.start %>") + new Date("<%= game.time.start %>").getTimezoneOffset();
+        document.getElementById('date').innerHTML = new Date(milliS).getDate();
+        document.getElementById('time').innerHTML = new Date(milliS).getHours() + ":" + new Date(milliS).getMinutes();
       </script>
   </body>
 </html>
