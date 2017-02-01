@@ -22,4 +22,6 @@ The DoCW Tic Toc Website
   - [x] Register
   - [x] Admin Panel
   - [x] News Bulletin
-  - [ ] FB API for activity
+  
+### The Event
+![Event Poster](https://github.com/UtkarshMe/DocwTicToc/raw/master/poster.png "Event Poster")
