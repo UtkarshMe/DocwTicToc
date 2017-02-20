@@ -7,7 +7,7 @@ var bodyParser   = require('body-parser');
 var morgan = require('morgan');
 var session = require('express-session');
 
-// Required by redshift
+// Required by openshift
 var path = require('path');
 var contentTypes = require('./utils/content-types');
 var sysInfo = require('./utils/sys-info');
