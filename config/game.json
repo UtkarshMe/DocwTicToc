@@ -1,7 +1,7 @@
 {
     "time":
     {
-        "_comment": "USE localTime - 10:30",
+        "_comment": "USE server time",
         "start": "Jan 24, 2017 17:30:00",
         "initial": "5400000",
         "deadline": "3000"

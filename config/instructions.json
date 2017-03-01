@@ -39,7 +39,7 @@
         {
             "0": "Use 'Ask a Question' box for asking any doubts about the game",
             "1": "If the question is worth answering (lol), it'll be released as a news item",
-            "2": "If you are impatient, you can always come to the DoCW stall on Day 0",
+            "2": "If you are impatient, you can always come to the stall on Day 0",
             "3": "Help will always be given at BITS to those who need it ie, there will be frequent News releases as and when needed"
         }
     },
@@ -48,7 +48,7 @@
         "heading": "Game end",
         "points":
         {
-            "0": "If all the questions are finished report to the DoCW stall and notify us."
+            "0": "If all the questions are finished report to the stall and notify us."
         }
     },
     "5":
@@ -57,8 +57,7 @@
         "points":
         {
             "0": "The rules can be changed anytime during the game. Any change will be reflected in the News",
-            "1": "DoCW holds the right to disqualify any team if found to be using illegal means",
-            "2": "By registering you are agreeing to the non-existant terms and conditions"
+            "1": "By registering you are agreeing to the non-existant terms and conditions"
         }
     }
 }

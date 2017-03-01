@@ -5,11 +5,11 @@
         "title": "Tic Toc",
         "description":
         {
-            "short": "The Time is Running",
-            "long": "\"I feel your every move, I know your every thought. I'm there from your birth, and I'll see how you rot\"Participate in this intense, cryptic race against time! Player beware: Lose and you go KABOOM!"
+            "short": "Short description",
+            "long": "Long desciption here"
         },
         "logo":"clock-o",
-        "company": "DoCW, BITS Goa | Website: UTkarsh Maheshwari",
+        "company": "Made by: UTkarsh Maheshwari",
         "theme": "lumen",
         "navbar":{
             "style": "default"

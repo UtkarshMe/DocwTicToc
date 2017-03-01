@@ -1,27 +1,22 @@
 {
-  "name": "docwtictoc",
+  "name": "tictoc",
   "version": "1.0.0",
-  "description": "The DoCW Tic Toc Website",
+  "description": "An online quiz-like game",
   "private": true,
   "main": "server.js",
   "scripts": {
-    "start": "supervisor server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UtkarshMe/DocwTicToc.git"
+    "url": "git+https://github.com/UtkarshMe/TicToc.git"
   },
-  "keywords": [
-    "docw",
-    "tic-toc",
-    "website"
-  ],
   "author": "UTkarsh Maheshwari",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/UtkarshMe/DocwTicToc/issues"
+    "url": "https://github.com/UtkarshMe/TicToc/issues"
   },
-  "homepage": "https://github.com/UtkarshMe/DocwTicToc#readme",
+  "homepage": "https://github.com/UtkarshMe/TicToc#tictoc",
   "dependencies": {
     "bcrypt-nodejs": ">=0.0.3",
     "body-parser": "^1.15.2",

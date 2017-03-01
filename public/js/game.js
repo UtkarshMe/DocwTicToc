@@ -7,7 +7,7 @@ function loadQuestion() {
             if (question[0]) {
                 out = question;
             } else {
-                out = "You have won! Report to the DoCW stall for further instructions";
+                out = "You have won! Report to the stall for further instructions";
             }
             document.getElementById('question').innerHTML = out;
         }

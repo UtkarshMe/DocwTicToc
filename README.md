@@ -1,13 +1,13 @@
-# DocwTicToc
-The DoCW Tic Toc Website
+# Tic Toc
+An online quiz-like game
 
 ### Instructions
   - Install [node](https://nodejs.org/en/download/)
   - Install and run [mongodb](https://www.mongodb.com/download-center)
   - Clone the repo and install dependencies
   
-        git clone https://github.com/UtkarshMe/DocwTicToc
-        cd DocwTicToc
+        git clone https://github.com/UtkarshMe/TicToc
+        cd TicToc
         npm install
 
   - Start the server
@@ -15,4 +15,4 @@ The DoCW Tic Toc Website
         node server.js
   
 ### The Event
-![Event Poster](https://github.com/UtkarshMe/DocwTicToc/raw/master/poster.png "Event Poster")
+![Event Poster](https://github.com/UtkarshMe/TicToc/raw/master/poster.png "Event Poster")
